@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Birthday</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<!-- 🌈 MAGIC TRANSITION LAYER -->
+<div id="magicTransition"></div>
+
+<!-- 🦋 HERO BUTTERFLY REVEAL -->
+<div class="reveal-overlay"></div>
+
+<!-- 🌑 INTRO SCREEN -->
+<div id="intro">
+  <div class="intro-glow"></div>
+</div>
+
+<!-- 🌸 PETALS (OPTIONAL BACKGROUND) -->
+<div class="petals"></div>
+
+  <!-- 💗 HEART LAYER -->
+  <div class="heart-layer"></div>
+
+<div class="floating-text" id="birthdayText">
+  Happy Birthday
+  <span class="princess-wrap">
+    <span class="crystal-crown">
+      <i></i><i></i><i></i>
+    </span>
+    <span class="princess">Princess</span>
+  </span>
+</div>
+
+<!-- 🎬 MAIN SCENE -->
+<div class="scene">
+
+  <!-- 🦋 BUTTERFLIES (DEPTH ENABLED) -->
+  <div class="butterflies">
+
+    <!-- BACK (blur + slow) -->
+    <div class="butterfly pink back"   style="top:70%;left:-15%;animation-delay:0s"><i></i><i></i></div>
+    <div class="butterfly purple back" style="top:55%;left:-20%;animation-delay:3s"><i></i><i></i></div>
+    <div class="butterfly blue back"   style="top:40%;left:-25%;animation-delay:6s"><i></i><i></i></div>
+    <div class="butterfly green back"  style="top:30%;left:-18%;animation-delay:9s"><i></i><i></i></div>
+    <div class="butterfly peach back"  style="top:65%;left:-22%;animation-delay:12s"><i></i><i></i></div>
+
+    <!-- MID (normal) -->
+    <div class="butterfly pink mid"    style="top:25%;left:-30%;animation-delay:2s"><i></i><i></i></div>
+    <div class="butterfly purple mid"  style="top:45%;left:-35%;animation-delay:5s"><i></i><i></i></div>
+    <div class="butterfly blue mid"    style="top:60%;left:-40%;animation-delay:8s"><i></i><i></i></div>
+    <div class="butterfly green mid"   style="top:35%;left:-28%;animation-delay:11s"><i></i><i></i></div>
+    <div class="butterfly peach mid"   style="top:75%;left:-32%;animation-delay:14s"><i></i><i></i></div>
+
+    <!-- FRONT (sharp + fast) -->
+    <div class="butterfly pink front"   style="top:50%;left:-45%;animation-delay:1s"><i></i><i></i></div>
+    <div class="butterfly purple front" style="top:20%;left:-50%;animation-delay:4s"><i></i><i></i></div>
+    <div class="butterfly blue front"   style="top:65%;left:-55%;animation-delay:7s"><i></i><i></i></div>
+    <div class="butterfly green front"  style="top:30%;left:-60%;animation-delay:10s"><i></i><i></i></div>
+    <div class="butterfly peach front"  style="top:80%;left:-65%;animation-delay:13s"><i></i><i></i></div>
+
+<div class="butterfly pink back from-right"   style="top:72%;right:-15%;animation-delay:1s"><i></i><i></i></div>
+<div class="butterfly purple back from-right" style="top:58%;right:-20%;animation-delay:4s"><i></i><i></i></div>
+<div class="butterfly blue back from-right"   style="top:42%;right:-25%;animation-delay:7s"><i></i><i></i></div>
+<div class="butterfly green back from-right"  style="top:32%;right:-18%;animation-delay:10s"><i></i><i></i></div>
+<div class="butterfly peach back from-right"  style="top:68%;right:-22%;animation-delay:13s"><i></i><i></i></div>
+<div class="butterfly pink mid from-right"    style="top:28%;right:-30%;animation-delay:3s"><i></i><i></i></div>
+<div class="butterfly purple mid from-right"  style="top:48%;right:-35%;animation-delay:6s"><i></i><i></i></div>
+<div class="butterfly blue mid from-right"    style="top:62%;right:-40%;animation-delay:9s"><i></i><i></i></div>
+<div class="butterfly green mid from-right"   style="top:38%;right:-28%;animation-delay:12s"><i></i><i></i></div>
+<div class="butterfly peach mid from-right"   style="top:78%;right:-32%;animation-delay:15s"><i></i><i></i></div>
+<div class="butterfly pink front from-right"   style="top:52%;right:-45%;animation-delay:2s"><i></i><i></i></div>
+<div class="butterfly purple front from-right" style="top:22%;right:-50%;animation-delay:5s"><i></i><i></i></div>
+<div class="butterfly blue front from-right"   style="top:67%;right:-55%;animation-delay:8s"><i></i><i></i></div>
+<div class="butterfly green front from-right"  style="top:33%;right:-60%;animation-delay:11s"><i></i><i></i></div>
+<div class="butterfly peach front from-right"  style="top:82%;right:-65%;animation-delay:14s"><i></i><i></i></div>
+
+  </div>
+
+  <!-- 📱 PHONE -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="phone-screen">
+      <!-- messages JS se dynamically aayenge -->
+    </div>
+    <!-- Slide Bar Button -->
+    <div class="slide-bar-container" id="slideBarContainer">
+      <div class="slide-bar-track">
+        <input type="radio" id="slideRadio" class="slide-radio" />
+        <div class="slide-bar-thumb">
+          <span class="slide-arrow">→</span>
+        </div>
+        <span class="slide-text">Slide to continue</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 👦👧 CHARACTERS -->
+  <div class="characters">
+    <img
+      src="assets/boy-with-phone.png"
+      class="char boy with-phone"
+      alt="Boy with phone"
+    />
+    <img
+      src="assets/boy-without-phone.png"
+      class="char boy without-phone"
+      alt="Boy without phone"
+    />
+
+    <img
+      src="assets/girl-without-phone.png"
+      class="char girl without-phone"
+      alt="Girl without phone"
+    />
+    <img
+      src="assets/girl-with-phone.png"
+      class="char girl with-phone"
+      alt="Girl with phone"
+    />
+  </div>
+
+</div>
+
+<!-- 🧠 SCRIPT -->
+<script src="script.js"></script>
+</body>
+</html>

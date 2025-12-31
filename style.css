@@ -1,0 +1,1284 @@
+/* ===== GLOBAL ===== */
+:root{
+  --blue-1:#cfe9ff;
+  --blue-2:#9fd6ff;
+  --pink-1:#ffd6e8;
+  --purple-1:#d6c6ff;
+  --cream-1:#fff7ea;
+  --rose-1:#ffc6dd;
+  --glint:#ffffff;
+  --tone-speed:18s;
+}
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
+}
+
+body{
+  background:linear-gradient(
+    120deg,
+    var(--blue-1),
+    var(--purple-1),
+    var(--cream-1),
+    var(--pink-1),
+    var(--blue-2)
+  );
+  background-size:400% 400%;
+  animation:bgTone var(--tone-speed) ease-in-out infinite;
+  transition:background-color 1.2s ease, color 0.8s ease;
+  font-family:Arial, sans-serif;
+}
+
+@keyframes bgTone{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.scene{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  filter: blur(0);
+  transition: filter 1.2s ease;
+}
+
+.scene.reveal{
+  filter: blur(0);
+}
+
+/* ===== INTRO ===== */
+/* ===== INTRO (SMOOTH FADE, NO BLACK FLASH) ===== */
+#intro{
+  position:fixed;
+  inset:0;
+  background:black;
+  z-index:9999;
+  opacity:1;
+  pointer-events:none; /* 🔴 VERY IMPORTANT */
+  transition:opacity 1.9s ease;
+}
+
+@keyframes introKill{
+  0%   { opacity:1; }
+  85%  { opacity:1; }
+  100% {
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+
+.intro-glow{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:260px;
+  height:260px;
+  background:radial-gradient(
+    circle,
+    rgba(160,210,255,0.95) 0%,
+    rgba(220,180,255,0.65) 35%,
+    rgba(255,245,230,0.15) 70%
+  );
+  transform:translate(-50%,-50%) scale(0.2);
+  animation: glowExpand 3s ease-out forwards;
+}
+
+@keyframes glowExpand{
+  0%{
+    transform:translate(-50%,-50%) scale(0.2);
+    opacity:0;
+  }
+  30%{
+    opacity:1;
+  }
+  100%{
+    transform:translate(-50%,-50%) scale(8);
+    opacity:1;   /* 🔴 important: fade nahi hoga */
+  }
+}
+
+/* ===== PHONE ===== */
+.phone{
+  position:absolute;
+  left:14px;
+  top:50%;
+  width:260px;
+  height:520px;
+  background:linear-gradient(180deg, #0b0b0d 0%, #0f1113 100%);
+  border-radius:28px;
+  transform:translateY(-50%) translateX(-140%);
+  box-shadow:0 18px 40px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,0.02);
+  border:0.6px solid rgba(255,255,255,0.04);
+  opacity:0;
+  
+  /* 🔥 LOCK PHONE CONTAINER - PREVENT SIZE/POSITION CHANGES */
+  contain:layout style paint !important;
+}
+.phone.show{
+  animation:phoneEnter 1s cubic-bezier(.2,.9,.25,1) forwards;
+}
+@keyframes phoneEnter{
+  to{transform:translateY(-50%) translateX(0);opacity:1}
+}
+
+.notch{
+  position:absolute;
+  top:2px;
+  left:50%;
+  transform:translateX(-50%);
+  width:100px;
+  height:25px;
+  background:linear-gradient(180deg,#050506,#111214);
+  border-radius:0 0 8px 8px; /* sharper corner */
+  box-shadow:0 4px 10px rgba(0,0,0,0.5), inset 0 -1px 0 rgba(255,255,255,0.02);
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  z-index:6;
+  pointer-events:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 8px;
+  font-size:7px;
+  font-weight:600;
+  color:#999;
+  letter-spacing:-0.5px;
+}
+.notch::after{
+  content:"";
+  position:absolute;
+  right:14px;
+  top:8px;
+  width:5px;
+  height:5px;
+  background:#0b0b0b;
+  border-radius:50%;
+  box-shadow:0 1px 0 rgba(255,255,255,0.02), 0 0 6px rgba(0,0,0,0.45);
+}
+
+/* refined camera lens on left side of notch */
+.notch::before{
+  content:"";
+  position:absolute;
+  left:14px;
+  top:5px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 3%, transparent 8%),
+    radial-gradient(circle at 45% 45%, #2b2b2b 0%, #0b0b0b 40%, #000 100%);
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.7),
+    inset 0 -2px 4px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.04);
+  transform:translateY(0.5px);
+  z-index:9;
+  pointer-events:none;
+}
+
+.phone-screen{
+  position:absolute;
+  top:2.2px;
+  left:2.2px;
+  right:2.2px;
+  bottom:2.2px;
+  background:linear-gradient(
+    to bottom,
+    rgba(242,242,246,0.98),
+    rgba(237,237,243,0.98)
+  );
+  z-index:2;
+  border-radius:22px;
+  padding:48px 12px 20px;
+  overflow-y:auto;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
+  scrollbar-width:none;
+  
+  /* 🔥 LOCK THE SCREEN CONTAINER - IMMUTABLE SIZE & POSITION */
+  width:auto !important;
+  height:auto !important;
+  min-width:unset !important;
+  min-height:unset !important;
+  max-width:unset !important;
+  max-height:unset !important;
+  aspect-ratio:unset !important;
+  transform:none !important;
+  scale:1 !important;
+  flex:none !important;
+  flex-grow:0 !important;
+  flex-shrink:0 !important;
+  flex-basis:auto !important;
+  margin:0 !important;
+  border:none;
+  transition:none !important;
+  animation:none !important;
+  filter:none !important;
+}
+
+.phone-screen::-webkit-scrollbar{
+  width:0;
+  height:0;
+}
+
+.phone-screen::-webkit-scrollbar{
+  width:0;
+  height:0;
+}
+
+/* ===== iOS 26 GLASS MESSAGE BUBBLES ===== */
+
+.message{
+  font-size:12px;              /* 👈 text size smaller */
+  padding:8px 12px;
+  margin-bottom:8px;
+  border-radius:18px;
+  max-width:78%;
+  line-height:1.35;
+  word-break:break-word;
+}
+
+/* LEFT (iOS glass grey) */
+.left{
+  background:rgba(230,230,235,0.95);
+  color:#111;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.6),
+    0 2px 6px rgba(0,0,0,.08);
+}
+
+/* RIGHT (iOS blue glass) */
+.right{
+  background:linear-gradient(135deg,#0a84ff,#007aff);
+  color:white;
+  margin-left:auto;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.25),
+    0 2px 6px rgba(0,0,0,.12);
+}
+
+/* message entrance animation (iOS-like pop + slide) */
+.message{
+  font-size:13px;
+  padding:10px 14px;
+  margin-bottom:10px;
+  border-radius:18px;
+  max-width:78%;
+  line-height:1.35;
+  word-break:break-word;
+  transform-origin:50% 50%;
+  animation:msgIn .36s cubic-bezier(.2,.9,.2,1) both;
+}
+
+@keyframes msgIn{
+  0%{opacity:0;transform:translateY(8px) scale(.98)}
+  60%{transform:translateY(-4px) scale(1.02)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* subtle text reveal inside bubbles */
+.message span{display:inline-block;opacity:0;transform:translateY(4px);animation:textReveal .32s ease forwards;}
+@keyframes textReveal{to{opacity:1;transform:translateY(0)}}
+
+/* differentiate incoming vs outgoing timing */
+.left{animation-delay:0s}
+.right{animation-delay:.06s}
+
+/* iOS blur / glass on left bubble */
+.left{background:rgba(235,235,240,0.9);backdrop-filter:blur(6px)}
+.right{background:linear-gradient(135deg,var(--blue-2),#007aff);}
+
+/* subtle pop */
+@keyframes msgGlass{
+  from{
+    opacity:0;
+    transform:translateY(4px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* ===== iOS TYPING DOTS ===== */
+.typing{
+  width:48px;
+  height:22px;
+  background:#e5e5ea;
+  border-radius:16px;
+  padding:6px 10px;
+  display:flex;
+  gap:4px;
+  align-items:center;
+  margin-bottom:8px;
+}
+
+.typing span{
+  width:6px;
+  height:6px;
+  background:#8e8e93;
+  border-radius:50%;
+  animation:typingDots 1.4s infinite ease-in-out;
+}
+
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+
+@keyframes typingDots{
+  0%,80%,100%{opacity:.3}
+  40%{opacity:1}
+}
+
+.message{
+  animation:popIn .25s ease-out forwards;
+}
+
+@keyframes popIn{
+  from{
+    transform:scale(.85) translateY(4px);
+    opacity:0;
+  }
+  to{
+    transform:scale(1) translateY(0);
+    opacity:1;
+  }
+}
+
+/* glowing send button used in Sorry modal */
+@keyframes glowPulse{
+  0%{box-shadow:0 6px 18px rgba(111,179,255,0.08);}
+  50%{box-shadow:0 10px 30px rgba(111,179,255,0.18);transform:translateY(-1px)}
+  100%{box-shadow:0 6px 18px rgba(111,179,255,0.08);}
+}
+.glow-send{outline:none}
+.glow-send:hover{transform:translateY(-2px)}
+
+/* typing bubble pulse + accessibility */
+.typing{background:rgba(230,230,235,0.95);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.6);}
+.typing span{background:#8e8e93;width:6px;height:6px;border-radius:50%;}
+.typing.show{animation:typingPulse 1.6s infinite}
+@keyframes typingPulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+/* small helper to animate incoming text characters for realism (will run once per message via class) */
+.message.animate-chars span{animation: textReveal .36s ease forwards}
+
+/* ===== FLOATING TEXT ===== */
+.floating-text{
+  position:absolute;
+  top:3%;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  font-family:"Segoe Script","Brush Script MT",cursive;
+  font-size:66px;
+  font-style:italic;
+  font-weight:700;
+  color:transparent;
+  background:linear-gradient(90deg, var(--pink-1), var(--purple-1), var(--blue-2), var(--cream-1));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-stroke:1px rgba(255,255,255,0.06);
+  text-shadow:
+    0 4px 10px rgba(0,0,0,.18),
+    0 0 12px rgba(160,200,255,.22);
+  opacity:0;
+  pointer-events:none;
+  z-index:6;
+  overflow:visible;
+  will-change:transform, opacity;
+  transition: transform 1.2s cubic-bezier(.25,.8,.25,1), opacity 1.2s ease;
+}
+.floating-text.show{
+  opacity:1;
+  animation:textFloat 12s cubic-bezier(.25,.8,.25,1) infinite;
+  animation-fill-mode:both;
+}
+
+/* removed moving shine and glitter to keep text clear; smooth float maintained */
+@keyframes textFloat{
+  0%{transform:translateX(-50%) translateY(0)}
+  20%{transform:translateX(-50%) translateY(-4px)}
+  50%{transform:translateX(-50%) translateY(-10px)}
+  80%{transform:translateX(-50%) translateY(-4px)}
+  100%{transform:translateX(-50%) translateY(0)}
+}
+/* ===== PRINCESS + CROWN ===== */
+.princess-wrap{
+  position:relative;
+  display:inline-block;
+  overflow:visible;
+}
+
+.princess{
+  position:relative;
+  color:rgba(255,220,210,.75);
+}
+
+/* 👑 ROTATING TILTED CRESCENT CROWN WITH SHINE */
+.princess::before{
+  content:"";
+  position:absolute;
+  top:-48px;
+  left:50%;
+  transform:translateX(-50%) rotateZ(-18deg);
+  font-size:36px;
+  pointer-events:none;
+  animation:crownRotate 6s cubic-bezier(.4,.0,.6,1) infinite;
+  filter:drop-shadow(0 0 12px rgba(255,200,150,0.6)) drop-shadow(0 0 24px rgba(255,180,120,0.3));
+  z-index:10;
+}
+
+@keyframes crownRotate{
+  0%{transform:translateX(-50%) rotateZ(-18deg) scaleY(1)}
+  25%{transform:translateX(-50%) rotateZ(-8deg) scaleY(1.05)}
+  50%{transform:translateX(-50%) rotateZ(0deg) scaleY(1)}
+  75%{transform:translateX(-50%) rotateZ(8deg) scaleY(1.05)}
+  100%{transform:translateX(-50%) rotateZ(-18deg) scaleY(1)}
+}
+
+/* optional crescent shine overlay for crown */
+.princess-wrap::after{
+  content:"";
+  position:absolute;
+  top:-48px;
+  left:50%;
+  transform:translateX(-50%) translateY(-2px);
+  width:24px;
+  height:24px;
+  background:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 20%, transparent 50%);
+  border-radius:50%;
+  filter:blur(4px);
+  pointer-events:none;
+  animation:crownShine 3s ease-in-out infinite;
+  z-index:11;
+}
+
+@keyframes crownShine{
+  0%, 100%{opacity:0.4}
+  50%{opacity:0.8}
+}
+
+
+/* ===== BUTTERFLIES ===== */
+.butterflies{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+
+.butterfly{
+  position:absolute;
+  width:34px;
+  height:26px;
+  animation:fly 20s cubic-bezier(.25,.1,.25,.9) infinite;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+.butterfly i{
+  position:absolute;
+  width:17px;
+  height:26px;
+  background:linear-gradient(135deg,var(--pink-1),var(--blue-2));
+  border-radius:80% 30% 80% 30%;
+  box-shadow:inset -1px -1px 2px rgba(255,255,255,0.3);
+}
+.butterfly i:first-child{
+  left:0;
+  transform-origin:right;
+  animation:flap 0.5s cubic-bezier(.4,.0,.6,1) infinite;
+}
+.butterfly i:last-child{
+  right:0;
+  transform-origin:left;
+  animation:flap 0.5s cubic-bezier(.4,.0,.6,1) infinite reverse;
+}
+@keyframes flap{
+  0%, 100%{transform:rotateY(0deg)}
+  50%{transform:rotateY(70deg)}
+}
+@keyframes fly{
+  0%{transform:translateX(-20%) translateY(0) rotateZ(0deg);opacity:0}
+  10%{opacity:1}
+  25%{transform:translateX(15vw) translateY(-15vh) rotateZ(8deg)}
+  50%{transform:translateX(40vw) translateY(-25vh) rotateZ(-5deg)}
+  75%{transform:translateX(70vw) translateY(-35vh) rotateZ(8deg)}
+  100%{transform:translateX(120vw) translateY(-50vh) rotateZ(0deg);opacity:0}
+}
+/* butterflies coming from right */
+.butterfly.from-right{
+  animation-name: flyRight;
+}
+
+@keyframes flyRight{
+  0%{
+    transform:translateX(20%) translateY(0) rotateZ(0deg);
+    opacity:0;
+  }
+  10%{opacity:1}
+  25%{transform:translateX(-15vw) translateY(-15vh) rotateZ(-8deg)}
+  50%{transform:translateX(-40vw) translateY(-25vh) rotateZ(5deg)}
+  75%{transform:translateX(-70vw) translateY(-35vh) rotateZ(-8deg)}
+  100%{
+    transform:translateX(-120vw) translateY(-50vh) rotateZ(0deg);
+    opacity:0;
+  }
+}
+
+/* ===== CHARACTERS ===== */
+.characters{
+position:absolute;
+inset:0;
+pointer-events:none
+}
+
+.char{position:absolute;
+bottom:30px;
+width:380px
+}
+.characters{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index: 3;   /* 🔥 add this */
+}
+
+.boy{left:260px;opacity:0}
+.boy.run-in{opacity:1;animation:boySlide 1.6s forwards}
+@keyframes boySlide{to{transform:translateX(340px)}}
+.girl{right:60px}
+
+/* ================= GIRL INITIAL STATE ================= */
+/* ===== GIRL BASE STATE ===== */
+.girl.with-phone{
+  display: none;          /* 🔥 HARD HIDE */
+}
+
+.girl.without-phone{
+  display: block;
+}
+
+/* ================= GIRL VISIBILITY CONTROL ================= */
+/* Blur + magic phase ke time ladki invisible rahe */
+.scene:not(.reveal) .girl{
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Scene clear hone ke baad ladki normal */
+.scene.reveal .girl{
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease;
+}
+
+.characters.swap .girl.with-phone{
+  display: block;         /* 🔥 ONLY NOW */
+}
+
+.characters.swap .girl.without-phone{
+  display: none;
+}
+
+.characters.swap .boy.with-phone{opacity:0}
+.characters.swap .boy.without-phone{opacity:1}
+@keyframes girlJump{
+  0%{transform:translateY(0)}
+  40%{transform:translateY(-40px)}
+  100%{transform:translateY(0)}
+}/* ===== HEARTS (ONLY ONE VERSION – NO RED BOX) ===== */
+/* ===== SOFT HEARTS ===== */
+.heart{
+  position:absolute;
+  pointer-events:none;
+  transform:rotate(45deg);
+}
+
+/* very light ambient - rose pink */
+.heart.soft{
+  width:52px;
+  height:52px;
+  background:linear-gradient(135deg, rgba(255,182,193,0.28), rgba(255,192,203,0.2));
+  filter:blur(3px);
+  animation:heartSoft 2s cubic-bezier(.25,.8,.25,1) forwards;
+}
+
+/* click burst - bright rose pink */
+.heart.strong{
+  width:32px;
+  height:32px;
+  background:linear-gradient(135deg, rgba(255,160,185,0.8), rgba(255,182,193,0.75));
+  filter:blur(2px);
+  animation:heartStrong 2.2s cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:inherit;
+  border-radius:50%;
+}
+.heart::before{top:-50%;left:0}
+.heart::after{left:-50%;top:0}
+
+@keyframes heartSoft{
+  0%{opacity:1;transform:rotate(45deg) translateY(0) scale(0.9)}
+  50%{opacity:0.8}
+  100%{
+    opacity:0;
+    transform:rotate(45deg) translateY(-50px) scale(1.1);
+  }
+}
+
+@keyframes heartStrong{
+  0%{opacity:1;transform:rotate(45deg) translateY(0) scale(0.85)}
+  40%{opacity:0.9}
+  100%{
+    opacity:0;
+    transform:rotate(45deg) translateY(-80px) scale(1.3);
+  }
+}
+/* ===== BUTTERFLIES (MULTI COLOR, MANY) ===== */
+.butterflies{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:6;
+}
+
+.butterfly{
+  position:absolute;
+  width:36px;
+  height:26px;
+  animation:fly 22s linear infinite;
+}
+
+.butterfly i{
+  position:absolute;
+  width:18px;
+  height:26px;
+  border-radius:80% 30% 80% 30%;
+  opacity:0.75;
+}
+
+/* wing animation */
+.butterfly i:first-child{
+  left:0;
+  transform-origin:right;
+  animation:flap .7s infinite;
+}
+.butterfly i:last-child{
+  right:0;
+  transform-origin:left;
+  animation:flap .7s infinite reverse;
+}
+
+/* COLORS (light / faded) */
+.butterfly.pink i{background:linear-gradient(#ffd6ea,#ff9ccf)}
+.butterfly.purple i{background:linear-gradient(#e6d6ff,#bfa3ff)}
+.butterfly.blue i{background:linear-gradient(#d6f0ff,#9ccfff)}
+.butterfly.green i{background:linear-gradient(#d6ffe6,#9cffbf)}
+.butterfly.peach i{background:linear-gradient(#ffe5d6,#ffbfa3)}
+
+@keyframes flap{
+  to{transform:rotateY(65deg)}
+}
+
+@keyframes fly{
+  0%{transform:translateX(-20%) translateY(0);opacity:0}
+  15%{opacity:1}
+  100%{transform:translateX(120vw) translateY(-40vh);opacity:0}
+}
+/* ===== BUTTERFLY DEPTH ===== */
+.butterfly.back{
+  transform: scale(0.6);
+  filter: blur(2.5px);
+  opacity: 0.45;
+  animation-duration: 26s;
+}
+
+.butterfly.mid{
+  transform: scale(0.85);
+  filter: blur(1px);
+  opacity: 0.65;
+  animation-duration: 22s;
+}
+
+.butterfly.front{
+  transform: scale(1.1);
+  filter: blur(0);
+  opacity: 0.85;
+  animation-duration: 18s;
+}
+
+/* ===== PHASE 0.5 : HERO BUTTERFLY ===== */
+
+.hero-butterfly{
+  opacity:1;
+  visibility:visible;
+  animation-play-state: running;   /* 👈 ab dikhega */
+}
+
+/*
+.reveal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:9997;
+  animation:revealFade 3.6s ease forwards;
+}
+*/
+
+
+@keyframes revealFade{
+  to{opacity:0}
+}
+
+.hero-butterfly{
+  position:fixed;
+  top:42%;
+  left:-30%;
+  width:240px;
+  height:150px;
+  z-index:9998;
+  pointer-events:none;
+  animation:heroFly 3.6s ease-in-out forwards;
+}
+
+.hero-butterfly{
+  filter: drop-shadow(0 0 25px rgba(255,200,230,0.55));
+}
+
+/* body */
+.hero-butterfly .body{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:14px;
+  height:62px;
+  background:#2a2a2a;
+  border-radius:12px;
+  transform:translate(-50%,-50%);
+}
+
+/* wings */
+.hero-butterfly .wing{
+  position:absolute;
+  top:50%;
+  width:100px;
+  height:100px;
+  transform-origin:center;
+}
+
+.hero-butterfly .wing.left{ right:50%; }
+.hero-butterfly .wing.right{ left:50%; }
+
+/* layered curves */
+.hero-butterfly .wing span{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:60% 40% 70% 30%;
+  background:radial-gradient(circle at 30% 30%,
+    rgba(255,190,220,0.7),
+    rgba(180,140,255,0.45),
+    transparent 70%);
+  animation:wingFlap 0.9s ease-in-out infinite;
+}
+
+.hero-butterfly .wing span:nth-child(1){
+  transform:scale(1);
+  opacity:0.9;
+}
+
+.hero-butterfly .wing span:nth-child(2){
+  transform:scale(0.82) translate(8px,10px);
+  opacity:0.6;
+}
+
+.hero-butterfly .wing span:nth-child(3){
+  transform:scale(0.62) translate(16px,18px);
+  opacity:0.4;
+}
+
+@keyframes wingFlap{
+  0%,100%{transform:rotate(0deg) scale(1)}
+  50%{transform:rotate(18deg) scale(1.03)}
+}
+
+@keyframes heroFly{
+  0%{
+    transform:translateX(0) scale(1);
+    opacity:1;
+  }
+  100%{
+    transform:translateX(160vw) scale(1.1);
+    opacity:0;
+  }
+}
+/* ================= MAGIC TRANSITION (FINAL POLISH) ================= */
+
+/* ================= MAGIC TRANSITION (CLEAN & SHORT) ================= */
+
+#magicTransition{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;          /* intro ke just niche */
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  /* 🔥 NO RADIAL CIRCLE — uniform soft wash */
+   background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255,210,230,0.85) 0%,
+      rgba(220,200,255,0.8) 45%,
+      rgba(255,235,210,0.75) 70%,
+      rgba(255,235,210,0.65) 100%
+    );
+  filter: blur(18px);
+  transform: scale(1);
+}
+
+/* active = black → pink-purple wash */
+#magicTransition.active{
+  opacity: 1;
+  visibility: visible;
+  animation: magicFadeIn 1.4s ease forwards;
+}
+
+/* dissolve = wash fade + blur out */
+#magicTransition.split{
+  animation: magicFadeOut 1.4s ease forwards;
+}
+
+/* ================= KEYFRAMES ================= */
+@keyframes magicFadeIn{
+  from{
+    opacity:0;
+    filter: blur(40px);
+  }
+  to{
+    opacity:1;
+    filter: blur(22px);
+  }
+}
+
+@keyframes magicFadeOut{
+  from{
+    opacity:1;
+    filter: blur(22px);
+  }
+  to{
+    opacity:0;
+    filter: blur(0);
+  }
+}
+
+/* ================= KEYFRAMES ================= */
+
+@keyframes magicDrift{
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* black → pink-purple smooth melt */
+@keyframes blackToMagic{
+  0%{
+    opacity:0;
+    filter: blur(0);
+    transform: scale(1);
+  }
+  100%{
+    opacity:1;
+    filter: blur(28px);
+    transform: scale(1.08);
+  }
+}
+
+/* invisible split (sirf clear hone ka feel) */
+@keyframes magicDissolve{
+  0%{
+    opacity:1;
+    filter: blur(30px);
+  }
+  60%{
+    opacity:.9;
+    filter: blur(40px);
+  }
+  100%{
+    opacity:0;
+    filter: blur(60px);
+  }
+}
+
+
+/* ================= BLUR SUPPORT ================= */
+/* Scene blur control (JS will toggle) */
+
+.scene.blur{
+  filter: blur(18px);
+  transition: filter 1.8s ease;
+}
+
+.scene.reveal{
+  filter: blur(0);
+}
+
+/* ================= MAGIC TRANSITION (FINAL – CLEAN & SHORT) ================= */
+
+#magicTransition{
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  background:
+    radial-gradient(circle at 50% 45%,
+      rgba(255,190,220,0.85) 0%,     /* pink */
+      rgba(205,185,255,0.75) 40%,    /* purple */
+      rgba(190,220,255,0.65) 65%,    /* sky blue */
+      rgba(255,235,220,0.55) 100%    /* cream blend */
+    );
+
+  filter: blur(16px);
+  transition: opacity 1.2s ease, filter 1.2s ease;
+}
+
+
+#magicTransition.active{
+  opacity:1;
+  visibility:visible;
+  animation: magicIn 1.4s ease forwards;
+}
+
+#magicTransition.split{
+  animation: magicOut 1.6s ease forwards;
+}
+
+@keyframes magicIn{
+  from{
+    opacity:0;
+    filter: blur(30px);
+  }
+  to{
+    opacity:1;
+    filter: blur(20px);
+  }
+}
+
+@keyframes magicOut{
+  from{
+    opacity:1;
+    filter: blur(20px);
+  }
+  to{
+    opacity:0;
+    filter: blur(0);
+  }
+}
+
+.message.typing{
+  width:52px;
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+
+.message.typing span{
+  width:6px;
+  height:6px;
+  background:#999;
+  border-radius:50%;
+  animation:blink 1.4s infinite both;
+}
+
+.message.typing span:nth-child(2){animation-delay:.2s}
+.message.typing span:nth-child(3){animation-delay:.4s}
+
+@keyframes blink{
+  0%{opacity:.2}
+  20%{opacity:1}
+  100%{opacity:.2}
+}
+
+/* ===== SLIDE BAR (phone bottom) ===== */
+.slide-bar-container{
+  position:absolute;
+  bottom:14px; /* position near phone bottom */
+  left:50%;
+  transform:translateX(-50%);
+  width:86%;
+  max-width:220px;
+  z-index:8;
+  display:block;
+  opacity:0;
+  transition:opacity .45s cubic-bezier(.2,.9,.25,1), transform .45s ease;
+  pointer-events:none;
+}
+.slide-bar-container.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+
+.slide-bar-track{
+  position:relative;
+  height:42px;
+  background:rgba(255,255,255,0.14);
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  padding:6px 14px 6px 56px; /* leave room for circular thumb */
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 18px rgba(0,0,0,0.12);
+  border:1px solid rgba(255,255,255,0.35);
+  user-select:none;
+  overflow:hidden;
+}.slide-bar-track{
+  position:relative;
+  height:42px;
+
+  /* 🔥 iOS-style bubble glass (NO transparency) */
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue-1),
+      var(--purple-1),
+      var(--pink-1)
+    );
+
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  padding:6px 14px 6px 56px;
+
+  /* depth + shine */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.9),
+    inset 0 -1px 0 rgba(0,0,0,0.05),
+    0 10px 24px rgba(0,0,0,0.18);
+
+  border:none;
+  user-select:none;
+  overflow:hidden;
+}
+
+.slide-bar-thumb{
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  width:34px;
+  height:34px;
+   /* iOS bubble */
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      #ffffff,
+      #f1f1f6
+    );
+
+  border-radius:50%;
+  box-shadow:
+    0 12px 26px rgba(0,0,0,0.28),
+    inset 0 2px 4px rgba(255,255,255,0.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  color:#333;
+  cursor:pointer;
+  transition:left 0.45s cubic-bezier(.17,.67,.83,.67), transform .18s ease;
+  z-index:9;
+}
+
+.slide-bar-thumb .slide-arrow{font-size:18px;line-height:1}
+
+.slide-text{
+  margin:0 auto;
+  font-size:13px;
+  font-weight:600;
+  color:#2b2b2b;
+  text-shadow:0 1px 1px rgba(255,255,255,0.6);
+  pointer-events:none;
+}
+
+/* when track has sliding state slightly expand thumb for feedback */
+.slide-bar-track.sliding .slide-bar-thumb{transform:scale(1.02)}
+
+/* ===== BUTTON LIST (CENTERED) ===== */
+.buttons-grid{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+
+  width:88%;
+  margin:0 auto;              /* 🔥 center horizontally */
+  padding:12px 0;
+
+  animation:buttonsReveal .6s cubic-bezier(.2,.9,.25,1) forwards;
+}
+.action-btn{
+  padding:16px 18px;          /* 🔥 height + width */
+  border-radius:16px;
+  border:0;
+
+  font-weight:700;
+  font-size:15px;
+
+  cursor:pointer;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+  text-align:center;
+}
+.btn-pink{background:linear-gradient(135deg,#ffd6e8,#ffb0d4);color:#4b0b2a}
+.btn-blue{background:linear-gradient(135deg,#cfe9ff,#9fd6ff);color:#04325a}
+.btn-purple{background:linear-gradient(135deg,#d6c6ff,#bfa1ff);color:#2b0340}
+.btn-gradient-1{background:linear-gradient(135deg,#ffecd2,#fcb69f);color:#3b1b00}
+.btn-gradient-2{background:linear-gradient(135deg,#b6f0d4,#7ae0bf);color:#0b3b2b}
+.btn-cream{background:linear-gradient(135deg,#fff7ea,#fff1d6);color:#4a3b1a}
+
+/* ensure phone-screen children don't get clipped when buttons inserted */
+.phone-screen .buttons-grid{padding-bottom:6px}
+
+/* ===== BUTTON ENTRY ANIMATION ===== */
+.buttons-grid{
+  opacity:0;
+  transform:translateY(16px) scale(0.96);
+  animation:buttonsReveal .6s cubic-bezier(.2,.9,.25,1) forwards;
+}
+
+@keyframes buttonsReveal{
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* individual button pop */
+.action-btn{
+  opacity:0;
+  transform:translateY(14px) scale(0.92);
+  animation:btnPop .45s cubic-bezier(.2,.9,.25,1) forwards;
+}
+
+@keyframes btnPop{
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.action-btn{
+  position:relative;
+}
+
+.action-btn::after{
+  content:"";
+  position:absolute;
+  bottom:-7px;
+  left:10%;
+  width:80%;
+  height:1px;
+  background:rgba(0,0,0,0.06);
+}
+/* ===== HERO BUTTON GLOW ===== */
+.action-btn.hero{
+  position:relative;
+  box-shadow:
+    0 0 0 rgba(0,0,0,0),
+    0 14px 28px rgba(255,160,185,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.action-btn.hero::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:18px;
+  background:linear-gradient(
+    135deg,
+    rgba(255,200,220,0.9),
+    rgba(200,180,255,0.8)
+  );
+  opacity:0.55;
+  filter:blur(14px);
+  z-index:-1;
+  animation:heroGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes heroGlow{
+  0%,100%{opacity:.45}
+  50%{opacity:.85}
+}
+
+/* ===== GLASS RIPPLE ===== */
+.action-btn{
+  overflow:hidden;
+}
+
+.action-btn .ripple{
+  position:absolute;
+  border-radius:50%;
+  transform:scale(0);
+  background:radial-gradient(
+    circle,
+    rgba(255,255,255,0.9),
+    rgba(255,255,255,0.4),
+    transparent 70%
+  );
+  animation:ripple .6s ease-out;
+  pointer-events:none;
+}
+
+@keyframes ripple{
+  to{
+    transform:scale(3.2);
+    opacity:0;
+  }
+}
+
+/* 🔥 PROTECT SCREEN INNER - CONTENT ONLY, NO CONTAINER CHANGES */
+.screen-inner{
+  position:relative;
+  width:100% !important;
+  height:100% !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:none !important;
+  transform:none !important;
+  scale:1 !important;
+  flex:none !important;
+  transition:none !important;
+  animation:none !important;
+  filter:none !important;
+}
+
+/* 🔥 ENSURE PHONE SCREEN NEVER RESIZES DUE TO CONTENT */
+.phone-screen {
+  display:flex !important;
+  flex-direction:column !important;
+  flex-wrap:nowrap !important;
+}
+
+/* Prevent content from affecting screen size */
+.phone-screen > * {
+  flex-shrink:0 !important;
+  flex-grow:0 !important;
+}
