@@ -174,7 +174,7 @@ function initChat(){
 
 
   const messages = [
-    "Hello madam ji ðŸ™‚",
+    "Hello madam ji 😊",
     "Boliye!",
     "HAPPY BIRTHDAY MADAM JI âœ¨",
     "Thank you ",
@@ -1268,3 +1268,4 @@ screen.animate(
   }, 420);
 }
  });
+
