@@ -397,7 +397,7 @@ function initChat(){
 
     // Button data
    const buttons = [
-  { label: "ðŸ¥¹ Sorry", color: "btn-blue" },
+  { label: "🥹 Sorry", color: "btn-blue" },
   { label: "ðŸ’Œ Message", color: "btn-gradient-1" },
   { label: "ðŸŽ‚ Cake", color: "btn-purple" },
   { label: "ðŸŽ Gift", color: "btn-gradient-2" },
@@ -1268,4 +1268,5 @@ screen.animate(
   }, 420);
 }
  });
+
 
