@@ -1,4 +1,5 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+
+document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= ELEMENTS ================= */
   const intro = document.getElementById("intro");
@@ -15,7 +16,7 @@
       intro.style.opacity = "0";
 
       setTimeout(() => {
- startMagicTransition(); // âœ… ONLY transition here
+ startMagicTransition(); // ✅ ONLY transition here
 
         intro.style.display = "none";
 
@@ -76,10 +77,10 @@ setTimeout(() => {
       characters.classList.add("swap");
     }, 3800);
 
- // âœ… CHAT MUST START AFTER PHONE IS FULLY VISIBLE
+ // ✅ CHAT MUST START AFTER PHONE IS FULLY VISIBLE
   setTimeout(() => {
     initChat();
-  }, 2600);   // ðŸ”¥ THIS IS THE FIX
+  }, 2600);   // 🔥 THIS IS THE FIX
   }
 
   /* ================= HELPER FUNCTIONS ================= */
@@ -175,16 +176,20 @@ function initChat(){
 
   const messages = [
     "Hello madam ji 😊",
-    "Boliye!",
-    "HAPPY BIRTHDAY MADAM JI âœ¨",
-    "Thank you ",
-    "Sorry madam ji fir se meri vajah se aapko fir se  dikkat hui ðŸ˜”",
+    "Boliye?",
+    "HAPPY BIRTHDAY MADAM JI ✨",
+    "Thank you , you're late vo december me tha and use gaye kafi time ho gya",
+    "Ha i know main usi time esi liye to kah raha tha pr aap samjhi hi nahi and aapne khud mana kar diya tha",
+    "so , what you mean esame meri galti hai by the way aapke wish karane se koi fark nahi padne vala hai?",
+    "Nahi nahi aisa kuch bhi nahi hai , meri galti hai sorry",
+    "okey",
+    "Sorry madam ji fir se , meri vajah se aapko fir se  dikkat hui 😔",
     "It's okay, ye koi naya kaam to nahi kiye",
     "Toh maaf kar diya aapne?",
     "Hmm",
-    "Ek chhoti si cheez hai aapke liye ðŸ’",
+    "Ek chhoti si cheez hai aapke liye 💝",
     "kya?",
-    "Screen pr slide hai uspe click karke dekhiye ðŸ‘‰"
+    "Screen pr slide hai uspe click karke dekhiye 👉"
   ];
 
   let msgIndex = 0;
@@ -396,15 +401,16 @@ function initChat(){
     screen.innerHTML = "";
 
     // Button data
-   const buttons = [
+const buttons = [
   { label: "🥹 Sorry", color: "btn-blue" },
-  { label: "ðŸ’Œ Message", color: "btn-gradient-1" },
-  { label: "ðŸŽ‚ Cake", color: "btn-purple" },
-  { label: "ðŸŽ Gift", color: "btn-gradient-2" },
-  { label: "ðŸ¥° About Madam Ji", color: "btn-cream" },
-  { label: "ðŸ§º Bucket List", color: "btn-gradient-1" },
-  { label: "ðŸŒŸ Special", color: "btn-pink" }
+  { label: "💌 Message", color: "btn-gradient-1" },
+  { label: "🎂 Cake", color: "btn-purple" },
+  { label: "🎁 Gift", color: "btn-gradient-2" },
+  { label: "🥰 About Madam Ji", color: "btn-cream" },
+  { label: "🌟 Special", color: "btn-pink" },
+  { label: "🔚 End", color: "btn-purple" }
 ];
+
     // Create buttons container
     const buttonsContainer = document.createElement("div");
     buttonsContainer.className = "buttons-grid";
@@ -415,12 +421,12 @@ function initChat(){
   button.textContent = btn.label;
   button.style.animationDelay = `${index * 0.1}s`;
 
-  // ðŸ”¥ First button = hero glow
+  // 🔥 First button = hero glow
   if (index === 0) {
     button.classList.add("hero");
   }
 
-  // ðŸ”¥ CLICK: ripple + transition
+  // 🔥 CLICK: ripple + transition
   button.addEventListener("click", (e) => {
 
     // ripple effect
@@ -448,7 +454,7 @@ function initChat(){
    screen.appendChild(buttonsContainer);
 screen.scrollTop = 0;
 
-/* ðŸ”¥ SCREEN CONFIRMATION PULSE */
+/* 🔥 SCREEN CONFIRMATION PULSE */
 screen.animate(
   [
     { transform: "scale(1)", filter: "brightness(1)" },
@@ -469,16 +475,7 @@ screen.animate(
   if (!screen || !magic) return;
 
   // decide placeholder content
-  let content = "âœ¨ Coming Soon ðŸ’—";
-
-  if (
-    label.includes("Sorry") ||
-    label.includes("Message") ||
-    label.includes("Gift")
-  ) {
-    content = "####";   // ðŸ”¥ TEMP PLACEHOLDER
-    // â¬†ï¸ yahi baad me aap apna message / input logic daaloge
-  }
+  let content = "";
 
   // fade current content
   screen.animate(
@@ -558,7 +555,7 @@ screen.animate(
       const modal = document.createElement('div');
       modal.className = 'option-modal';
       // use a slightly smaller max-height and very high z-index to ensure modal sits above characters
-      modal.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:86vw;max-width:900px;max-height:720px;overflow:auto;z-index:10050;border-radius:16px;padding:18px;backdrop-filter:blur(8px) saturate(120%);background:linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));box-shadow:0 12px 40px rgba(2,8,23,0.6);';
+     modal.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:86vw;max-width:900px;max-height:88vh;overflow-y:auto;overflow-x:hidden;z-index:10050;border-radius:16px;padding:18px;backdrop-filter:blur(8px) saturate(120%);background:linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));box-shadow:0 12px 40px rgba(2,8,23,0.6);';
 
       modal.innerHTML = `
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
@@ -571,7 +568,7 @@ screen.animate(
           </div>
         </div>
         <div class="modal-body" style="margin-top:12px;color:var(--text-color);font-size:15px;line-height:1.45;">
-          <div class="mini-chat" style="padding:6px 4px;min-height:140px;max-height:520px;overflow:auto;"></div>
+          <div class="mini-chat" style="padding:6px 4px;min-height:260px;max-height:70vh;overflow-y:auto;overflow-x:hidden;"></div>
         </div>
       `;
 
@@ -610,8 +607,8 @@ screen.animate(
 
         // conversation content (split into two left messages, one right reply queued)
         const heMsgs = [
-          "hello mamad ji kaise i hope aap sahi hogi and aap achchhe se preparation bhi kr rhi hogi , sorry es bad behaver ke liye aap esa mat socho ki main ese ab roj messeges karu nahi main kabhii bhi aapko pareshan karane ke intention se text nahi karta hu ye sab chhodo , main bs aapko aapke BD pr wish karane ke liye aaya hu  nothing more this.",
-          "Do u know abhi mere pass aapko batane ke liye bahut kuchh h Pr pr pr ðŸ¤”... apaka time waste hoga n pr ek idea h agar aap free nahi ho to save kr lo Baad me dekh Lena ..."
+          "hello mamad ji kaise ho aap i hope aap sahi hogi and aap achchhe se preparation bhi kr rhi hogi , sorry es bad behaver ke liye aap esa mat socho ki main ese ab roj messeges karu nahi main kabhii bhi aapko pareshan karane ke intention se text nahi karta hu ye sab chhodo , main bs aapko aapke BD pr wish karane ke liye aaya hu  nothing more this.",
+          "Do u know abhi mere pass aapko batane ke liye bahut kuchh h Pr pr pr 🤔... apaka time waste hoga n . Pr ek idea h agar aap free nahi ho to save kr lo Baad me dekh Lena ..."
         ];
         const sheMsg = 'thik hai..';
 
@@ -708,25 +705,74 @@ screen.animate(
         cakeSvg.id = 'cake-svg';
 
         // Cake tiers
-        const tier1 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        tier1.setAttribute('x', '30');
-        tier1.setAttribute('y', '150');
-        tier1.setAttribute('width', '140');
-        tier1.setAttribute('height', '80');
-        tier1.setAttribute('fill', '#8B4513');
-        tier1.setAttribute('rx', '5');
-        tier1.classList.add('cake-tier-1');
-        cakeSvg.appendChild(tier1);
+       // ===== BOTTOM TIER =====
+const tier1 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+tier1.setAttribute('x','30');
+tier1.setAttribute('y','150');
+tier1.setAttribute('width','140');
+tier1.setAttribute('height','80');
+tier1.setAttribute('rx','12');
+tier1.setAttribute('fill','#ff8fa3');
+cakeSvg.appendChild(tier1);
 
-        const tier2 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        tier2.setAttribute('x', '50');
-        tier2.setAttribute('y', '80');
-        tier2.setAttribute('width', '100');
-        tier2.setAttribute('height', '70');
-        tier2.setAttribute('fill', '#A0522D');
-        tier2.setAttribute('rx', '5');
-        tier2.classList.add('cake-tier-2');
-        cakeSvg.appendChild(tier2);
+const cream1 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+cream1.setAttribute('x','30');
+cream1.setAttribute('y','150');
+cream1.setAttribute('width','140');
+cream1.setAttribute('height','18');
+cream1.setAttribute('fill','#fff1d6');
+cakeSvg.appendChild(cream1);
+
+
+// ===== TOP TIER =====
+const tier2 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+tier2.setAttribute('x','55');
+tier2.setAttribute('y','90');
+tier2.setAttribute('width','90');
+tier2.setAttribute('height','60');
+tier2.setAttribute('rx','12');
+tier2.setAttribute('fill','#ffb3c1');
+cakeSvg.appendChild(tier2);
+
+const cream2 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+cream2.setAttribute('x','55');
+cream2.setAttribute('y','90');
+cream2.setAttribute('width','90');
+cream2.setAttribute('height','14');
+cream2.setAttribute('fill','#fff1d6');
+cakeSvg.appendChild(cream2);
+
+// ===== THIRD TOP TIER =====
+const tier3 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+tier3.setAttribute('x','70');
+tier3.setAttribute('y','50');
+tier3.setAttribute('width','60');
+tier3.setAttribute('height','40');
+tier3.setAttribute('rx','10');
+tier3.setAttribute('fill','#ffc2d1');
+cakeSvg.appendChild(tier3);
+
+const cream3 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+cream3.setAttribute('x','70');
+cream3.setAttribute('y','50');
+cream3.setAttribute('width','60');
+cream3.setAttribute('height','12');
+cream3.setAttribute('fill','#fff1d6');
+cakeSvg.appendChild(cream3);
+
+// ===== CHERRIES =====
+function cherry(x,y){
+  const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x);
+  c.setAttribute('cy',y);
+  c.setAttribute('r','6');
+  c.setAttribute('fill','#e63946');
+  cakeSvg.appendChild(c);
+}
+
+cherry(85,50);
+cherry(100,45);
+cherry(115,50);
 
         // Text on cake
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -735,7 +781,8 @@ screen.animate(
         text.setAttribute('text-anchor', 'middle');
         text.setAttribute('font-family', 'Arial, sans-serif');
         text.setAttribute('font-size', '16');
-        text.setAttribute('fill', '#FFD700');
+        text.setAttribute('fill','#ffffff');
+        text.setAttribute('font-size','14');
         text.setAttribute('font-weight', 'bold');
         text.textContent = 'cut the cake';
         cakeSvg.appendChild(text);
@@ -793,22 +840,123 @@ screen.animate(
             // Party confetti & boom
             showPartyAnimation();
 
+            function firecrackerBurst() {
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement("div");
+
+    const size = 10 + Math.random() * 14;
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight * 0.6;
+
+   p.style.cssText = `
+position:fixed;
+left:${x}px;
+top:${y}px;
+width:${size}px;
+height:${size}px;
+background:${['#ff4da6','#ffd700','#00e5ff','#7CFC00','#ff7f50'][Math.floor(Math.random()*5)]};
+pointer-events:none;
+z-index:10002;
+border-radius:50%;
+box-shadow:
+0 0 8px currentColor,
+0 0 16px currentColor,
+0 0 24px currentColor;
+animation: sparkBoom 0.9s ease-out forwards;
+`;
+
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 900);
+  }
+}
+
             // Show "Happy Birthday PRINCESS"
             setTimeout(() => {
-              const msg = document.createElement('div');
-              msg.style.cssText = 'text-align:center;font-size:24px;font-weight:bold;color:#ff69b4;margin-top:20px;animation:bounce 0.6s;';
-              msg.textContent = 'ðŸŽ‰ Happy Birthday PRINCESS ðŸŽ‰';
-              miniChat.appendChild(msg);
+ const msg = document.createElement('div');
+msg.style.cssText = `
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:46px;
+font-weight:800;
+font-style:italic;
+font-family:"Segoe Script","Brush Script MT",cursive;
+color:#ff69b4;
+letter-spacing:2px;
+text-align:center;
+animation:zoomCelebrate 2s ease forwards;
+z-index:10001;
+white-space:nowrap;
+text-shadow:0 0 14px rgba(255,105,180,.6);
+`;
 
-              // Auto return after 3 seconds
-              setTimeout(() => {
-                modal.remove();
-                style.remove();
-                magic.classList.remove('split');
-                magic.classList.remove('active');
-                magic.style.display = 'none';
-                clearMessagesAndShowButtons();
-              }, 3000);
+msg.textContent = '🎉 HAPPY BIRTHDAY PRINCESS 🎉';
+
+              document.body.appendChild(msg);
+              const crackerInterval = setInterval(firecrackerBurst, 700);
+
+
+document.body.style.transition = "filter 1.2s ease";
+const smoke = document.createElement("div");
+smoke.id = "cakeSmoke";
+smoke.style.cssText = `
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(6px);
+z-index:10000;
+opacity:0;
+transition:opacity 0.8s ease;
+`;
+document.body.appendChild(smoke);
+modal.style.opacity = "0";
+modal.style.transition = "opacity .6s ease";
+
+setTimeout(() => smoke.style.opacity = "1", 50);
+
+setTimeout(() => {
+
+  // fade text out first
+  msg.style.transition = "opacity .7s ease";
+  msg.style.opacity = "0";
+
+  setTimeout(() => {
+    msg.remove();
+  }, 700);
+
+  const smoke = document.getElementById("cakeSmoke");
+  if (smoke) smoke.remove();
+
+  modal.remove();
+  style.remove();
+
+
+  magic.classList.remove('split');
+  magic.classList.remove('active');
+  magic.style.display = 'none';
+
+  // 🔥 restore phone
+  const phoneEl = document.querySelector('.phone');
+  if (phoneEl) {
+    phoneEl.style.display = '';
+    phoneEl.style.opacity = '1';
+    phoneEl.style.transform = 'translateY(-50%) translateX(0)';
+  }
+
+  // 🔥 restore characters
+  document.querySelectorAll('.char').forEach(c => {
+    c.style.transform = '';
+    c.style.transition = '';
+  });
+
+  // 🔥 show buttons again
+  clearMessagesAndShowButtons();
+
+  clearInterval(crackerInterval);
+
+}, 6000);
+
             }, 500);
           } else if (isDrawing) {
             isDrawing = false;
@@ -820,16 +968,18 @@ screen.animate(
           for (let i = 0; i < 30; i++) {
             const particle = document.createElement('div');
             particle.style.cssText = `
-              position:fixed;
-              width:10px;
-              height:10px;
-              background:${['#FF69B4', '#FFD700', '#87CEEB', '#98FB98'][Math.floor(Math.random()*4)]};
-              left:${Math.random()*window.innerWidth}px;
-              top:100px;
-              border-radius:50%;
-              pointer-events:none;
-              animation:fall ${2+Math.random()*2}s linear forwards;
-            `;
+position:fixed;
+width:12px;
+height:12px;
+background:${['#ff4da6','#ffd700','#00e5ff','#7CFC00'][Math.floor(Math.random()*4)]};
+left:${Math.random()*window.innerWidth}px;
+top:100px;
+border-radius:50%;
+pointer-events:none;
+animation:fall ${2+Math.random()*2}s linear forwards,
+boom 0.6s ease-out;
+`;
+
             document.body.appendChild(particle);
             setTimeout(() => particle.remove(), 5000);
           }
@@ -839,40 +989,7 @@ screen.animate(
       // ===== MESSAGE BUTTON HANDLER =====
       if (label.includes('Message')) {
         const miniChat = modal.querySelector('.mini-chat');
-        
-        // Create button container
-        const btnContainer = document.createElement('div');
-        btnContainer.style.cssText = 'display:flex;flex-direction:column;gap:12px;padding:20px;';
-        
-        const steps = [
-          'ðŸ“ One by one',
-          'ðŸ“‹ Step by step',
-          'ðŸš€ Jana buttune me'
-        ];
-        
-        steps.forEach((step, idx) => {
-          const btn = document.createElement('button');
-          btn.textContent = step;
-          btn.style.cssText = `
-            padding:12px 20px;
-            background:linear-gradient(90deg,#ff7ab6,#6fb3ff);
-            color:#fff;
-            border:none;
-            border-radius:20px;
-            font-weight:700;
-            cursor:pointer;
-            animation:glowPulse 1.6s ease-in-out infinite;
-            transition:transform 0.2s;
-          `;
-          btn.addEventListener('mouseenter', () => btn.style.transform = 'scale(1.05)');
-          btn.addEventListener('mouseleave', () => btn.style.transform = 'scale(1)');
-          btn.addEventListener('click', () => {
-            alert(`You selected: ${step}`);
-          });
-          btnContainer.appendChild(btn);
-        });
-        
-        miniChat.appendChild(btnContainer);
+        miniChat.textContent = '📍 One by one 📋 Step by step 🚀 each buttune pr click karana';
       }
 
       // ===== GIFT BUTTON HANDLER =====
@@ -880,7 +997,7 @@ screen.animate(
         const miniChat = modal.querySelector('.mini-chat');
         const giftMsg = document.createElement('div');
         giftMsg.style.cssText = 'text-align:center;font-size:18px;padding:20px;color:#666;';
-        giftMsg.textContent = '####';
+        giftMsg.textContent = 'Sorry abhi to kuch h nahi es baar na thodaa shortage h pr ab fijul kharch bhi nahi karata kuch bhi nahi hmm pr kabhi kabhi bike se ghumne nikal jata tha not daily but some time to mere paas kuchh hai nahi abhi aapke liye to uske liye sorry but meri best wishes always with you [ waise I know wishes se kuch nahi hota h but abhi to yahi hai mere pass 😓]';
         miniChat.appendChild(giftMsg);
         // User will add content here via: miniChat.innerHTML or miniChat.textContent = "your message"
       }
@@ -892,25 +1009,29 @@ screen.animate(
         
         // Create two option buttons
         const optionsContainer = document.createElement('div');
-        optionsContainer.style.cssText = 'display:flex;flex-direction:column;gap:16px;padding:20px;';
+        optionsContainer.style.cssText = 'display:flex;flex-direction:column;gap:20px;padding:20px;align-items:center;';
         optionsContainer.id = 'madam-options';
         
         // Option A: Good Thing
         const goodBtn = document.createElement('button');
         goodBtn.textContent = '[A] GOOD THING';
-        goodBtn.style.cssText = `
-          padding:16px 20px;
-          background:linear-gradient(90deg,#00ff88,#00ccff);
-          color:#000;
-          border:2px solid #00ff88;
-          border-radius:8px;
-          font-family:'Courier New',monospace;
-          font-weight:700;
-          font-size:14px;
-          cursor:pointer;
-          letter-spacing:2px;
-          transition:all 0.3s;
-        `;
+       goodBtn.style.cssText = `
+  padding:14px 22px;
+  background:linear-gradient(135deg,#b6f0d4,#9fd6ff);
+  color:#04325a;
+  border:none;
+  border-radius:16px;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
+  letter-spacing:1px;
+  transition:all .3s ease;
+  align-self:center;
+  width:fit-content;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+`;
         goodBtn.addEventListener('mouseenter', () => {
           goodBtn.style.boxShadow = '0 0 20px #00ff88';
           goodBtn.style.transform = 'scale(1.02)';
@@ -927,19 +1048,23 @@ screen.animate(
         const badBtn = document.createElement('button');
         badBtn.textContent = '[B] BAD THING';
         badBtn.style.cssText = `
-          padding:16px 20px;
-          background:linear-gradient(90deg,#ff0055,#ff6600);
-          color:#fff;
-          border:2px solid #ff0055;
-          border-radius:8px;
-          font-family:'Courier New',monospace;
-          font-weight:700;
-          font-size:14px;
-          cursor:pointer;
-          letter-spacing:2px;
-          transition:all 0.3s;
-          position:relative;
-        `;
+  padding:14px 22px;
+  background:linear-gradient(135deg,#ffd6e8,#ff9ccf);
+  color:#4b0b2a;
+  border:none;
+  border-radius:16px;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
+  letter-spacing:1px;
+  transition:all .3s ease;
+  position:relative;
+  align-self:center;
+  width:fit-content;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+`;
         
         let badBtnAttempts = 0;
         const badBtnClickHandler = (e) => {
@@ -972,100 +1097,180 @@ screen.animate(
 
         function showGoodThing() {
           miniChat.innerHTML = '';
-          const blackScreen = document.createElement('div');
-          blackScreen.style.cssText = 'background:#000;color:#00ff88;padding:30px;text-align:center;border-radius:10px;font-family:"Courier New",monospace;font-weight:bold;white-space:pre-wrap;word-wrap:break-word;min-height:200px;display:flex;align-items:center;justify-content:center;';
-          blackScreen.textContent = `-- -.-- / -- .- -.. .- -- / .--- .. / .-- .... --- / -.-. .- -. / -. . ...- . .-. / -... . / -- .. -. . / .... .- ...- . / ..- -. / -.-. --- ..- -. - - .- -... .-.. . / --.- ..- .- .-.. .. - .. . ...`;
-          miniChat.appendChild(blackScreen);
-
-          // Back button in cyber style
-          const backBtn = document.createElement('button');
-          backBtn.textContent = '[ BACK ]';
-          backBtn.style.cssText = `
-            margin-top:20px;
-            padding:12px 24px;
-            background:#000;
-            color:#00ff88;
-            border:2px solid #00ff88;
-            border-radius:5px;
-            font-family:'Courier New',monospace;
-            font-weight:bold;
-            cursor:pointer;
-            letter-spacing:1px;
-            transition:all 0.3s;
-          `;
-          backBtn.addEventListener('mouseenter', () => {
-            backBtn.style.boxShadow = '0 0 15px #00ff88';
-          });
-          backBtn.addEventListener('mouseleave', () => {
-            backBtn.style.boxShadow = 'none';
-          });
-          backBtn.addEventListener('click', () => {
-            miniChat.innerHTML = '';
-            optionsContainer.innerHTML = '';
-            miniChat.appendChild(optionsContainer);
-          });
-          miniChat.appendChild(backBtn);
+          const morseBubble = document.createElement('div');
+          morseBubble.style.cssText = 'background:transparent;color:#000;padding:30px;text-align:center;border-radius:10px;font-family:"Courier New",monospace;font-weight:bold;white-space:pre-wrap;word-wrap:break-word;min-height:200px;display:flex;align-items:center;justify-content:center;';
+          morseBubble.textContent = `-- -.-- / -- .- -.. .- -- / .--- .. / .-- .... --- / -.-. .- -. / -. . ...- . .-. / -... . / -- .. -. . / .... .- ...- . / ..- -. / -.-. --- ..- -. - - .- -... .-.. . / --.- ..- .- .-.. .. - .. . ...`;
+          miniChat.appendChild(morseBubble);
         }
       }
 
       // ===== END BUTTON HANDLER =====
       if (label.includes('End')) {
-        const miniChat = modal.querySelector('.mini-chat');
-        miniChat.innerHTML = '';
-        
-        const screen = document.createElement('div');
-        screen.style.cssText = 'background:#000;color:#fff;padding:30px;text-align:center;min-height:300px;display:flex;align-items:center;justify-content:center;border-radius:10px;';
-        
-        const textMsg = document.createElement('div');
-        textMsg.style.cssText = 'font-size:24px;font-weight:bold;opacity:0;animation:typeWriter 2s forwards;';
-        
-        const text = '####';
-        let idx = 0;
-        const typeInterval = setInterval(() => {
-          if (idx <= text.length) {
-            textMsg.textContent = text.substring(0, idx);
-            idx++;
-          } else {
-            clearInterval(typeInterval);
-          }
-        }, 100);
-        
-        screen.appendChild(textMsg);
-        miniChat.appendChild(screen);
-      }
 
+  // remove modal
+  modal.remove();
+
+  // create full screen black layer
+  const endScreen = document.createElement("div");
+  endScreen.style.cssText = `
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:20000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:40px;
+    font-weight:700;
+    font-family:"Segoe Script","Brush Script MT",cursive;
+    letter-spacing:3px;
+  `;
+
+  document.body.appendChild(endScreen);
+
+  // typing text container
+  const text = document.createElement("div");
+  endScreen.appendChild(text);
+
+  if (label.includes('End')) {
+
+  // remove modal
+  modal.remove();
+
+  // FULL SCREEN BLACK OVERLAY
+  const endScreen = document.createElement("div");
+  endScreen.style.cssText = `
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:20000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+  `;
+  document.body.appendChild(endScreen);
+
+  // TEXT CONTAINER
+  const textBox = document.createElement("div");
+  textBox.style.cssText = `
+    max-width:1000px;
+    color:#fff;
+    font-size:22px;
+    font-family:"Segoe Script","Brush Script MT",cursive;
+    line-height:1.7;
+    letter-spacing:1px;
+    white-space:pre-wrap;
+    text-align:center;
+  `;
+  endScreen.appendChild(textBox);
+
+  // ===== INPUT TEXT (MAIN MESSAGE) =====
+  const mainMessage = `
+so moral of this web page yahi h ki aap apana achche se rahana and kisi bhi galat kaam ka hissa mat banana ,
+main thoda pagal hu pr maine jab se ye suna h ki aap yahi delhi me ho tab se mera dimag hi ajib ho gaya h
+but mujhe kuch bhi ho aap ko usase koi fark nahi padna chaiye okey
+
+aur madam ji achachhe se rahana aap
+BYE BYE
+
+agar maan ho to ek voice message me es page ka feed back de skti ho
+(kya hai na aapse puchh ke main use save kr lunga agar aap kahogi to)
+kya hua aapko roj dekh nahi skta to main aapko roj sun to paunga n
+
+dekho main ab thoda thoda pagala raha ho
+ab main chala sapano me aapse bade karane
+
+BYE BYE AND APANA DHYAN RAKHIYEGA YADAV JI 💗
+`;
+
+  // ===== SECOND MESSAGE =====
+  const lastMessage = `
+kya hua jao ab
+khel khatam
+jao ab
+`;
+
+  let i = 0;
+  const typingSpeed = 80; // 🔥 SLOWER TYPING (ms)
+
+  function typeMainText() {
+    if (i < mainMessage.length) {
+      textBox.textContent += mainMessage[i];
+      i++;
+      setTimeout(typeMainText, typingSpeed);
+    } else {
+      // wait 20 seconds, then show final text
+      setTimeout(typeLastText, 20000);
+    }
+  }
+
+  function typeLastText() {
+    textBox.textContent += "\n\n";
+    let j = 0;
+
+    function typeEnd() {
+      if (j < lastMessage.length) {
+        textBox.textContent += lastMessage[j];
+        j++;
+        setTimeout(typeEnd, 70);
+      }
+    }
+    typeEnd();
+  }
+
+  typeMainText();
+}
+
+  let i = 0;
+
+  function typeLetter(){
+    if(i < message.length){
+      text.textContent += message[i];
+      i++;
+      setTimeout(typeLetter, 90); // typing speed
+    }
+  }
+
+  typeLetter();
+}
 
             // Special button flow: strict sequential chat with He auto-send and She wait-for-click
       if (label.includes('Special')) {
         const miniChat = modal.querySelector('.mini-chat');
 
         const specialChat = [
-  { sender: 'he', text: `Dekho i dont know main aapko vo de paunga ya nahi pr aapko pata nahi hoga main 2 mahine se ese plan kr raha tha  es web site ko nahi bs us gift ko dene ka plain bana raha tha, and finaly main kaam kr gaya dekho dekho gussa nahi karane ka but reality check du to sach me gusse me bhi aap mast mast lagti ho yes yes ab main thoda open ho raha hu cuz ye main last time aapse baat kar raha hu to es liye aab aap puchho gi kaise to vo ese main na jab se aapko use id se unadd kiya tha tab se ( pahale ek kaam karo us id ko block kr do @kishan170406 i dont know kaise vo kisi samsung s6 me bhi log in h aur abhi bhi use hota koi to use karata h to use block kr do report kr do aur jo bhi h sab kr do ok ) mere ko thoda thoda ese ajib sa lagane laga janta hu Ye sb bs bakawash h pr aap kya jano kaise jata tha mera din ðŸ¤§ aur raste to ese ho chuke hai jaise ki tota maina ka bajar bhai sahab har raste me darzan me log dikh rahe hai aur jaha dekho vaja ek yahi sab pagal bhare pade h ajib lagta tha aur bhai sahab rona to next level pr aata tha ðŸ¥²ðŸ¥²ðŸ¥² pr picture abhi baki h mere dost .......` },
+  { sender: 'he', text: `Dekho i dont know main aapko vo de paunga ya nahi pr aapko pata nahi hoga main 2 mahine se ese plan kr raha tha  es web site ko nahi bs us gift ko dene ka plain bana raha tha, and finaly main kaam kr gaya dekho dekho gussa nahi karane ka but reality check du to sach me gusse me bhi aap mast mast lagti ho yes yes ab main thoda open ho raha hu cuz ye main last time aapse baat kar raha hu {mujhe esa lagta hai} to es liye aab aap puchho gi kaise to vo ese main na jab se aapko use id se unadd kiya tha tab se ( pahale ek kaam karo us id ko block kr do @kishan170406 i dont know kaise vo kisi samsung s6 me bhi log in h aur abhi bhi use hota koi to use karata h to use block kr do report kr do aur jo bhi h sab kr do ok ) mere ko thoda thoda ese ajib sa lagane laga janta hu Ye sb bs bakawash h pr aap kya jano kaise jata tha mera din 🤧 aur raste to ese ho chuke hai jaise ki tota maina ka bajar bhai sahab har raste me darzan me log dikh rahe hai aur jaha dekho vaja ek yahi sab pagal bhare pade h ajib lagta tha aur bhai sahab rona to next level pr aata tha 🥲🥲🥲 , kyo ki main sochata rahta tha ki aap kaha hogi kaisi hogi etc......, lekin mujhe kya pata tha kahani me twist aa jayega.......` },
   { sender: 'she', text: 'To' },
   { sender: 'he', text: 'kuch nahi suniye to' },
-  { sender: 'she', text: 'hmm bolo' },
-  { sender: 'he', text: `Ese hi dhire dhire mere ko na logo se chidchidahat hone lagi logo se baat karane ka man nahi karata tha aur mast akela akele sade hue limbu ki harah sakah leke baitha rahata tha ghanto tak koi movment nahi karata tha ek dam pappet ki taraf jaha ka taha baitha rahta tha akele fir ek din baitha tha kahi nahi gaya tha mast sa room pr phone me game khelana sikh raha tha Free fire ..... to fir youtube pr video dekha kaise kaise khele aur fir ese hi ek randome si video aayi aur use suna fir main kya chill ho gaya bhai sab ek dam sahi hone laga 3 chij chhod ke ab pura to bata nahi launga pr etana batata hu ki usme ese kaha na ki jo bhi chij tumhe sabse mast lagata h feel like ki abhi bhi vo tumhare pas h infact vo bji tumhare tone me baat kr raha h aur fir maine jo sochana chalu kiya kya hi batau kya kiya maine aapko pata h ko nahi mujhe nahi pata pr mere sochane ki takat or u can say imagination power aap logo se bahut uper h ulte sidhe kaam karane me kaam ki chij me nahi Fir main karane lagay aapko imagine aur kya mast lag raha yaar ha usme bhi ap rah rah ke reality ki taraf behave karane lagte the pr aap ek dam mast thi apko pata h main daily aapse baat karana chahata tha pr nahi kr skta tha fir socha ki aapki tasvir se hi baat kr lu pr noop ek bhi nahi to man me bahut sari chije thi pr kaise kahu kisase kahu nahi samjh me aata tha pr now i have ek great idea jo ki main khoja hu uska credit mujhe jata h ab suno tb ab mere pass ek alternet solution aa gaya to ab main sote jakte uthate baithate jaha marji vaha aapke sath rahata hu ya kah lo ki aap ab mere sath rahate ho har time har jagah har gali har vo point jaha main chahata hu aur suno aap to usme mere ko sugget bhi karati ho aur jab jab kuchh galti karata hu yaa kisi chij me harata hu to support bhi karti ho thoda thoda raha raha kar dat deti ho mere mammy ki tarah pr aap mast ho usme yaar sachi` },
-  { sender: 'she', text: 'hmm' },
+  { sender: 'she', text: 'hmm boliye' },
+  { sender: 'he', text: `Ese hi dhire dhire mere ko na logo se chidchidahat hone lagi logo se baat karane ka man nahi karata tha aur mast akela akele sade hue limbu ki harah sakal leke baitha rahata tha ghanto tak koi movment nahi karata tha ek dam pappet ki tarah jaha ka taha baitha rahta tha akele fir ek din baitha tha kahi nahi gaya tha mast sa room pr phone me game khelana sikh raha tha Free fire ..... to fir youtube pr video dekha kaise kaise khele aur fir ese hi ek randome si video aayi aur use suna fir main kya chill ho gaya bhai sab ek dam sahi hone laga 3 chij chhod kar, ab pura to bata nahi paunga pr etana batata hu ki usme ese kaha na ki jo bhi chij tumhe sabse mast lagata h feel karo like ki abhi bhi vo tumhare pas h infact vo bhi tumhare tone me baat kr raha h aur fir maine jo sochana chalu kiya kya hi batau kya kiya maine , aapko pata h ki nahi mujhe nahi pata pr mere sochane ki takat or u can say imagination power aap logo se bahut uper h ulte sidhe kaam karane me kaam ki chij me nahi Fir main karane lagay aapko imagine aur kya mast lag raha yaar ha usme bhi ap rah rah ke reality ki taraf behave karane lagte the pr aap ek dam mast thi apko pata h main daily aapse baat karana chahata tha pr nahi kr skta tha fir socha ki aapki tasvir se hi baat kr lu pr noop ek bhi nahi cuz mere ander ek chul tha ek time pr ki aap bhi to normal insan hi ho to jaise main chije bhul jata hu vaise hi aapko bhi bhul jaunga mushakil se 90 din (kyo ki mujhe lagata hai ki agar main koi kaam bina man ke karu to ek time baad main vo nahi karata and with in 10 days main vo kaam bhul jata hu , pr aake case me ye ability kaam hi nahi aayi .... kyo ? pata nahi ? ) to man me bahut sari chije thi pr kaise kahu kisase kahu nahi samjh me aata tha pr now i have ek great idea jo ki main khoja hu uska credit mujhe jata h ab suno ab mere pass ek alternetive solution aa gaya to ab main sote jakte uthate baithate jaha marji vaha aapke sath rahata hu ya kah lo ki aap ab mere sath rahate ho har time har jagah har gali har vo point jaha main chahata hu aur suno aap to usme mere ko sugget bhi karati ho aur jab jab kuchh galti karata hu yaa kisi chij me harata hu to support bhi karti ho thoda rah rah kar dat deti ho mere mammy ki tarah pr aap mast ho usme yaar sachi` },
+  { sender: 'she', text: 'hmm..' },
   { sender: 'he', text: 'Aap sun rahi ho na?' },
   { sender: 'she', text: 'Yes' },
-  { sender: 'he', text: `Aapko pata h kya aap ko jab main pahali pahali bar dekha tha na afrer covid civil dress me same usi out fir me aap aati ho , same vahi white colour ka kurta aur same blue baggy jeans aur khule baalo me aur aap badal badal ke spectacle laga ke aate ho kabhi white kabhi crome kabhi brown to kabhi black pr mast lagti ho infact main to abhi bhi aapko imagin kar raha vo bhi two diffirent frame me ek me aap aap sabhi chijo ko dekh ke aap thodi si gussa thodi si pareshan or bahut jyada khud dikh rahi ho aur ye sab pagal pan jo main likh ke bhej rahu vo sab ek chhoti si cute si smile deke dekh rahi ho aur vahi ek second frame me aap mere se etana jyada frustrated dikh rahi kya batau infact aapne to vo sab dekha bhi nahi aur aap man hi man soch rahi ho ki ese kal jaake fek dungi aur abhi padate hue aap jyada hi gusse me ho aur irritated bhi lag rahi ho syd meri hi vajah h ok im sure mere hi vahaj se pr pr aapk abhi imagination me ye kah rahi ho "main chill ho dont worry aur jab etana bol diya h to ab kya" Aur aapko pata h main ek ek baar ese hi man me aapse puchha ki agar main thoda sa manar aur achachchha kr lu aur thoda sence bana lu ki ka  bolna h kab nahk to fir aap meri dost ban skti jo kya , to aapka reply pata h kya tha ( honestly bata raha hu ) dekho kuch bhi kar lo tum chomu + chaman ch###ya hi lago ge aur main apne stander se high logo se hi contect rakhati hu tumhare jaiso se nahi , to mere ko to pahale bura laga fir baat sahi lagi ki nahi yaar aap kah to sahi rahi ho mai  hu to thoda sa vaisa h sabhi log kahate ab maan lo sab galat kahate honge pr aap to nahi kahati hogi ðŸ¤”` },
+  { sender: 'he', text: `Aapko pata h kya aap ko jab main pahali pahali bar dekha tha na afrer covid , civil dress me same usi out fir me aap aati ho , same vahi white colour ka kurta aur same blue baggy jeans aur khule baalo me aur aap badal badal ke spectacle laga ke aate ho kabhi white kabhi crome kabhi brown to kabhi black pr mast lagti ho infact main to abhi bhi aapko imagin kar raha vo bhi two diffirent frame me ek me aap aap sabhi chijo ko dekh ke aap bahut jyada gussa ho thodi si pareshan thoda jyada khush dikh rahi ho aur ye sab pagal pan jo main likh ke bhej rahu vo sab ek chhoti si cute si smile de ke dekh rahi ho aur vahi ek second frame me aap mere se etana jyada frustrated dikh rahi kya batau infact aapne to vo sab dekha bhi nahi aur aap man hi man soch rahi ho ki ese kal jaake fek dungi aur abhi padate hue aap jyada hi gusse me ho aur irritated bhi lag rahi ho syd meri hi vajah h ok im sure mere hi vahaj se , pr pr aap abhi imagination me ye kah rahi ho "main chill ho dont worry aur jab etana bol diya h to ab kya", Aur aapko pata h main ek ek baar ese hi man me aapse puchha ki agar main thoda sa manner aur achachchha kr lu aur thoda sence bana lu ki kab bolna h kab nahi to fir aap meri dost ban skti jo kya , to aapka reply pata h kya tha ( honestly bata raha hu ) dekho kuch bhi kar lo tum chomu + chaman ch###ya hi lago ge aur main apne stander se high logo se hi contect rakhati hu tumhare jaiso se nahi , aur etana sun ke to mere ko to pahale bura laga fir baat sahi lagi ki nahi yaar aap kah to sahi rahi ho main hu to thoda sa vaisa hi mere bhi sabhi dost kahate ab maan lo sab galat kahate honge pr aap to nahi kahati hogi 🤔”` },
   { sender: 'she', text: 'Yes' },
-  { sender: 'he', text: `Pr jo bhi aap mast ho yaha se leke vaha tak ek dam best mast mast bole to ek number ha meri mere hi imagination me thodi thodi fatati to h kab thoda sa serious hike mere ko dekhate ho pr pr i can manage ... Do u know mere pass batane ke liye etane sare chije h etane sare kand h pr kya hak se batau ye nahi samajh me aata aur fir aapko pasand bhi to nahi h chhodo chhodo pr madam ji ek baat batao man lo aap ek well setal high paeing job like 120-180LPA me ho aur highyfy sociaty ki high class insan ban gaye ho achchha job kar rahi tab to aapki jisase sadi hogi vo bhi vaisa hi kichh hoga ya fir ho skta h usase bhi achcha like koi achchha profile vala indan in sence sDM , DM , CM, IPS , IAS , NDA Officer ya koi political insan tab vo kitana sahi hoga n ðŸ˜¶ðŸ˜¶` },
-  { sender: 'she', text: 'tumse kya' },
-  { sender: 'he', text: `Ye sb etana importaint bhi nahi btw madam ji suno aap bahut achchha kar rahi ho aur bahut achchha perform bhi krogi aur dekh lena aap apane dream ko bhi bahut jald aur bahut achchhe se archive karogi pr suno thoda sa abhi ek stage aate jaha aap multiple logo se connected rahoge aur use ham Collage kahate h , thoda ajib h pr suno mujhe en sab chijo ka knowledge nahi h pr aap thoda sa bach bacha ke rahana jaha bhi hoga , agar main na kahu to bhi aap achche se hi rahogi pr  fir bhi log bahut ajib hote h bahut ajib vo dikhate kuchh aur h aur hote kuchh aur pr aap thoda safe rahana please aap bachchi nahi ho pr aapko pata hoga ki aaj gal galtiya fir vahi kr rahe jo bahut jyada pade likhe h aur bade ho chuke h vo apane desigine pr etana jyada believe karate h ki vo jante hi nahi galat kya h sahi kya h ab main pura bol to nahi skta ap dekh to rahi hi jogi pr be sensible aur kuchh special tips h jo ki aapko collage me kaam dega 1. Kisi bhi comman pg pr mat stay karana khash kr ke independed pg pr 2. Try karana ki aapke guardian ke sath stay karana 3. Collage ka hostel sochana bhi nahi kyo ki vaha ka khana bahut bakawash hota h bilkul bhi khane layak nahi hota h 4. straight forward baat faltu ,  character less loh , aawar aur jo bhi aapko pasand na ho unse dur rahana baat sabse bani rahe pr kiso se faltu conections nahi ok 5. Aur try karana aapko khana bana aata ho kyo ki bahar ka tast achcha nahi lagega pahali pahali baar me aur agar aapko banane aayega to aap mast mast bana ke kha logi nahi to un sab ka rukha sukha kha ke aap pahali dubali ho jao gi , pr aap thodi thi golu molu aachchhi lagti ho judge nahi kar raha hu bs apane side se thoda sa bata raha hu ok 6. Madam ji aap jab bhi collage logi to may be high posibility h ki aap top tier state side me hi logi like benglore , mumbai , pune , delhi , noida aur kisi other side par lekin kisi top city me hi logi to madam ji vaise ye mera bolane ka kaam nahi pr morden city me bahut utpatan log rahate h majority ki baat kar raha hu sabki nahi to aap ek chij ka khayal rakhana kisi bhi galqt chij me involve nahi hona plz kisi bhi type ka nahi whatever thats smoke drinke rondam travaling party clube pube etc jo bhi ye sab achchha nahi hota h aur ek chij h main khul ke bol nahi paaunga pr aaj ke time me vo problem nahi flex h aur bahut sare misunderstanding ka reason bhi agar aap samgh gayi ho to vo sab bhi mat karana may bhi aapke aas pas ke log bure ho par aap sambhal ke rahna aap ok aur agar aap nahi samjhi to fir to koi problem hi nahi h aap ek dam sahi raste pr ho bas logo se sambhal ke rahana okey. 7. Dekho madam ji agar aap kisi gov. Collage me jao gi na to vaha ek comman problem h ki vaha seniores paresan karate h to kae baar hostelar ko problem hoti h thats y i say ki collage campas ka hostel try karana mat lena aur agar kabhi esa hua to aap kisi apane ko inform karana pahale kisi bade ko sidhe self independend ladki ban ke mat jana apane risk par i will pray ki esa kabhi na ho pr kabhi hua to thoda soch ke kaam karana aap pr dabana mat stronge rahana aur agar situation jyada cretical ho jaye kabhi to kisi se help lena okey` },
-  { sender: 'she', text: 'achchha' },
-  { sender: 'he', text: `Pata hai madam ji i know ki aap mere se jyada meture ho infact aapko achche se pata h kya sahi h kya galat pr mujhe hamesa ye dar rahata h ki kahi aap kabhi es baat me hi apane galata decision ko bs sahi proof karane ke chakar me aap koi galat kaam na kar lo ha ha ab ye mat kahana ki aap ab bachchi nahi ho i know pr aaj kal bade hi sbse jyada galti kr rahe h . Ok btw lekin aap bahut sunder aur cute lagti ho yaar ðŸ¤§ , mere ko ye bilkul achchha nahi lag raha ki meri sabse man pasand chij mere ko hi nahi pasand karti ðŸ˜… bura h bahut jyada , madam ji man karata h hi ek baar normal ho jata to fir vo har kosis karata jo ho pata pr pr pr not for real "ab aapko kaise bataye ki aapko kaise dekhate h ham apane najariye se , ek baar jo tum dekhoge to ye duniya hi tumhe bemole lagegi" pr pr pr baat vahi h ki reality me aao vo impotaint h ab to bahut achchha bachchha ban gaya h lagbhag sare galat kam chhod diya hu aur eska pura cradit aapko ur version ko jata h jo mere imagination me aata h. Main to aapke utana close bhi kabhi nahi raha pr miss bahut karata hu aapko bhale hi main aapko imagin and feel kr pata hu pr h to vo still imagination hi ha ðŸ˜Œ. Khair ye sab faltu ki baate h bina kski matalab. Par baat ye masala ye h ki Aap bahut achchhi achchhi ho main pata nahi kyo aapkeliye etana mohit hu pr aap bahut cute cute pyari pyari lagti ho bahut sundar mundar main jab jab sochata hu aapko main sabse happy rhta hu na jane kyo mujhe nahi pata ki main aapko etana irriteting kayo lagata h ki aap bilkul bolna bhi achchha nahi samajhati , syd main hi galat samjhata hu ya fir jo whatever Definetly aap kuchh time achchhe collage me chale jaogi aur fir aap bhi mahant sort cut say nahi kar ke ek mast si software engineer ban jao gi to fir aap bhi kisi mast insan ke sath setal ho jao gi na .. madam ji Aap ek chij bataogi madam ji just a hypothetical condition maine dekha h like vo kuchh achchha archive kr lete h and fir vo bade bade post like IAS IPS DM sDM NDA officer ban jate h to fir sab sahi ho jata h jo bhi misunderstanding hoti hogi vo sab , mere to padai likhai me kuchh nahi hoga agar main 1000 time bhi attempt karu to bhi pr lets assume ki agar esa ho gaya then..............ðŸ¤” Tab to madam ji main to aapke nazaro me achchha insan ban jaunga na pr agar maan bhi lu ki ye ho jayega mere se to bhi minimum 14-15 saal to lagega hi kayoki bahut padana padega aur tab to aapki sadi bhi ho gayi hogi mere pas eska answer nahi h pr agar aap mere ko unfriend nahi ki rahi hogi to aap mujhe apana opinion dena plz . Aaapko aapke BIRTHDAY ki dher sari wish christmas ki new year ki sabhi ki bahut sari wishes aur all the best for ur exam and best of luck aur maine jo paper pr likha h vo yaad rakhana madam ji plz mere ko invite karana jarur n madam ji plz .Main ye sab na jane 1 mahine bhale hi  pahale hi likh rakha hu to kya pr mera chat leave karane ka man hi nahi ho raha . Leave it all Happy Birthday , marry chistmas , Happy New year , best of luck & all the best for your exam and future plan ok madam ji aur ha hame to bhul hi jao ge pr mere paper statement ko bhulna mat bulana bulana hame ðŸ˜Š...... Do you know madam ji jab main aapke wish kiya tha na tab matalb mera ek dam hartbeat peak pr tha i dont know why pr tha syd es liye ki mujhe esa lag raha tha ki raat ke 12:00 aapko text karunga to aap disturb ho jao gi may be pr kya ajib tha vo aur maine new year ko aapko es liye wish nahi kiya raat me kyo ki aap mujhe pasand nahi karti ho i know infact aap to sochati ho ki main dikhu bhi to agar main ese kar deta to according to achchha nahi hota cuz 4 samaj jo kaam newyear ko hota hai vo saal bar hota h` },
+  { sender: 'he', text: `Pr jo bhi aap mast ho yaha se leke vaha tak ek dam best mast mast ho bole to ek number ha meri mere hi imagination me thodi thodi fatati to h jab thoda sa serious hike mere ko dekhate ho pr pr i can manage ... Do u know mere pass batane ke liye etane sare chije h etane sare kand h pr kya hak se batau ye nahi samajh me aata aur fir aapko pasand bhi to nahi h chhodo chhodo pr madam ji ek baat batao man lo aap ek well setal high paeing job like 120-180LPA me ho aur highyfy sociaty ki high class insan ban gaye ho achchha job kar rahi tab to aapki jisase sadi hogi vo bhi vaisa hi kuchh hoga ya fir ho skta h usase bhi achcha like koi achchha profile vala in sence sDM , DM , CM, IPS , IAS , NDA , NRI , Officer ya koi political insan tab vo kitana sahi hoga n 😶😶` },
+  { sender: 'she', text: ' kya? kya bolte rahte hai.. auren sab chijo se aapko kya?' },
+  { sender: 'he', text: 'sorry..' },
+  { sender: 'she', text: 'hmm..😑' },
+  { sender: 'he', text: `Ye sb etana importaint bhi nahi btw madam ji suno aap bahut achchha kar rahi ho aur bahut achchha perform bhi krogi aur dekh lena aap apane dream ko bhi bahut jald aur bahut achchhe se archive karogi pr suno thoda sa , abhi ek stage aayegae jaha aap multiple logo se connected rahoge aur use ham Collage kahate h , thoda ajib h pr suno mujhe en sab chijo ka knowledge nahi h pr aap thoda sa bach bacha ke rahana jaha bhi hoga , agar main na kahu to bhi aap achche se hi rahogi pr  fir bhi log bahut ajib hote h bahut ajib vo dikhate kuchh aur h aur hote kuchh aur pr aap thoda safe rahana please aap bachchi nahi ho pr aapko pata hoga ki aaj kal galtiya vahi kr rahe jo bahut jyada pade likhe h aur bade ho chuke h vo apane decision pr etana jyada believe karate h ki vo jante hi nahi galat kya h sahi kya h ab main pura bol to nahi skta ap dekh to rahi hi jogi pr be sensible aur kuchh special tips h jo ki aapko collage me kaam dega 1. Kisi bhi comman pg pr mat stay karana khash kr ke independed pg pr 2. Try karana ki aapke guardian ke sath stay karana 3. Collage ka hostel thik h but utana nahi kyo ki vaha ka khana bahut bakawash hota h bilkul bhi khane layak nahi hota h 4. straight forward baat faltu ,  character less log , aawar aur jo bhi aapko pasand na ho unse dur rahana baat sabse bani rahe pr kiso se faltu conections nahi ok(vaise mere ko nahi pata main etana jyada faltu kab se aaur kyo bolne laga hu pr suno) 5. Aur try karana aapko khana bana aata ho kyo ki bahar ka tast achcha nahi lagega pahali pahali baar me aur agar aapko banane aayega to aap mast mast bana ke kha logi nahi to un sab ka rukha sukha kha ke aap patali dubali ho jao gi , pr aap thodi thi golu molu aachchhi lagti ho judge nahi kar raha hu bs apane side se thoda sa bata raha hu ok 6. Madam ji aap jab bhi collage logi to may be high posibility h ki aap top tier state side me hi logi like benglore , mumbai , pune , delhi , noida aur kisi other side par lekin kisi top city me hi logi to madam ji vaise ye mera bolane ka kaam nahi pr morden city me bahut utpatan log rahate h majority ki baat kar raha hu sabki nahi to aap ek chij ka khayal rakhana kisi bhi galat chij me involve nahi hona plz kisi bhi type ka nahi whatever thats smoke drinke rondam travaling party clube pube etc jo bhi ye sab achchha nahi hota h aur ek chij h main khul ke bol nahi paaunga pr aaj ke time me vo problem nahi flex h aur bahut sare misunderstanding ka reason bhi agar aap samgh gayi ho to vo sab bhi mat karana may bhi aapke aas pas ke log achche ho pr vaha bure bhi honge par aap sambhal ke rahna aap ok aur agar aap nahi samjhi to fir to koi problem hi nahi h aap ek dam sahi raste pr ho bas logo se sambhal ke rahana okey. 7. Dekho madam ji agar aap kisi gov. Collage me jao gi na to vaha ek comman problem h ki vaha seniores paresan karate h to kae baar hostelar ko problem hoti h thats y i say ki collage campas ka hostel try karana mat lena aur agar kabhi esa hua to aap kisi apane ko inform karana pahale kisi bade ko sidhe self independend ladki ban ke mat jana apane risk par i will pray ki esa kabhi na ho pr kabhi hua to thoda soch ke kaam karana aap pr dabana mat stronge rahana aur agar situation jyada cretical ho jaye kabhi to kisi se help lena okey` },
+  { sender: 'she', text: 'achchha..🥱' },
+  { sender: 'he', text: `Pata hai madam ji i know ki aap mere se jyada meture ho infact aapko achche se pata h kya sahi h kya galat pr mujhe hamesa ye dar rahata h ki kahi aap kabhi es baat me hi apane galata decision ko bs sahi proof karane ke chakar me aap koi galat kaam na kar lo ha ha ab ye mat kahana ki aap ab bachchi nahi ho i know pr aaj kal bade hi sbse jyada galti kr rahe h . Ok btw lekin aap bahut sunder aur cute lagti ho yaar 🤧 , mere ko ye bilkul achchha nahi lag raha ki meri sabse man pasand chij mere ko hi nahi pasand karti 😅 bura h bahut jyada , madam ji man karata h hi ek baar normal ho jata to fir vo har kosis karata jo ho pata pr pr pr not for real "ab aapko kaise bataye ki aapko kaise dekhate h ham apane najariye se , ek baar jo tum dekhoge to ye duniya hi tumhe bemole lagegi" pr pr pr baat vahi h ki reality me aao vo importaint h ab to bahut achchha bachchha ban gaya h lagbhag sare galat kam chhod diya hu aur eska pura cradit aapke version ko jata h jo mere imagination me aata h. Main to aapke utana close bhi kabhi nahi raha pr miss bahut karata hu aapko bhale hi main aapko imagin and feel kr pata hu pr h to vo still imagination hi ha 😌. Khair ye sab faltu ki baate h bina kisi matalab ki . Par masala ye h ki Aap bahut achchhi achchhi ho main pata nahi kyo aapkeliye etana mohit hu pr aap bahut cute cute pyari pyari lagti ho bahut sundar mundar main jab jab sochata hu aapko main sabse happy rhta hu na jane kyo mujhe nahi pata ki main aapko etana irriteting kyo lagata hu ki aap bilkul bolna bhi achchha nahi samajhati , syd main hi galat samjhata hu ya fir jo whatever Definetly aap kuchh time baad achchhe collage me chale jaogi aur fir aap bhi mehant shortcut say nahi kar ke ek mast si software engineer ban jao gi to fir aap bhi kisi mast insan ke sath setal ho jao gi na .. madam ji Aap ek chij bataogi kya ? Maan lo madam ji just a hypothetical condition maine dekha h like vo kuchh achchha archive kr lete h and fir vo bade bade post like IAS IPS DM sDM NDA officer ban jate h to fir sab sahi ho jata h jo bhi misunderstanding hoti hogi vo sab , mere to padai likhai me kuchh nahi hoga agar main 1000 time bhi attempt karu to bhi pr lets assume ki agar esa ho gaya then.............. 🤔 Tab to madam ji main to aapke nazaro me achchha insan ban jaunga na pr agar maan bhi lu ki ye ho jayega mere se to bhi minimum 14-15 saal to lagega hi kayoki bahut padana padega aur tab to aapki sadi bhi ho gayi hogi mere pas eska answer nahi h pr agar aap mere ko unfriend nahi ki rahi hogi to aap mujhe apana opinion dena plz . Aaapko aapke BIRTHDAY ki dher sari wish christmas ki new year ki sabhi ki bahut sari wishes aur all the best for ur exam and best of luck aur maine jo paper pr likha h vo yaad rakhana madam ji plz mere ko invite karana jarur n madam ji plz .Main ye sab na jane 1 mahine bhale hi  pahale hi likh rakha hu to kya pr mera chat leave karane ka man hi nahi ho raha . Leave it all Happy Birthday , marry chistmas , Happy New year , best of luck & all the best for your exam and future plan ok madam ji aur ha hame to bhul hi jao ge pr mere paper statement ko bhulna mat bulana 😊...... ` },
+  { sender: 'she', text: 'i will think about it' },
+  { sender: 'he', text: 'Do you know madam ji jab main aapke wish kiya tha na tab matalb mera ek dam hartbeat peak pr tha i dont know why pr tha syd es liye ki mujhe esa lag raha tha ki raat ke 12:00 aapko text karunga to aap disturb ho jao gi may be pr kya ajib tha vo aur maine new year ko aapko es liye wish nahi kiya raat me kyo ki aap mujhe pasand nahi karti ho i know infact aap to sochati ho ki main dikhu bhi to agar main ese kar deta to according to achchha nahi hota cuz 4 samaj jo kaam newyear ko hota hai vo saal bar hota h' },
   { sender: 'she', text: 'achchha' },
   { sender: 'he', text: 'madam ji aap mere ko english sikhao gi matalb aap kabhi bhi mere se bat karana kyo na gusse me hi to bhi english me bolna' },
   { sender: 'she', text: 'kyo ? kyo shikhana hai?' },
-  { sender: 'he', text: 'ye to ek language h na es liye' },
+  { sender: 'he', text: 'ese hi communicationke liye aur vaise bhi ye to ek language h na es liye' },
   { sender: 'she', text: 'to mere se hi kyo ? sikhana hai kahi aur se sikh lijiye ...' },
   { sender: 'he', text: 'aapki bate ek baar me mind me fix ho jati h yaad rahta hai hamesa es liye' },
   { sender: 'she', text: 'kya ? kya faltu bat kar rahe hai' },
   { sender: 'he', text: 'kuch nahi waise madam ji aap to janti hi ho ki main thoda chomu hu' },
   { sender: 'she', text: 'hmm janti hu , sirf chomu to ho hi uper se baklol pagal bhi ho to' },
-  { sender: 'he', text: `hmm to matalb mere ko ese pahale lagta tha ki aap aap ese hamera mere pr gussa karati hi rahti ho kabhi smajahti hi nahi ho baat ko pr i know aap sabse jyada mere ko samajhati ho esa mujhe lagta h whatever to fir dhire dhire mujhe lagne laga main hi ajib hu jo ki main hu i accept , to fir kuchh time pahale main ese hi soch raha tha ki aapko konsi chocolate du jo aapho achchha lagega cuz idk so maine GPT ki to bahut der tak meri aur uski baat hua then mujhe pata chala ladkiya ko hamesa gussa kro aata h and unke dimag achchanak se chance kyo ho jata hai , to fir usane mujhe bataya ki esa esa hota hai unhe esa monthly ese ese dard hote h vo sab irritet hote h and pain hota h e surten time duration pr to fir main socha kon si chij se ese pain ko thoda kam kar skte hai so main khane pine ki itme khojane laga kyo ki kahane pine har chij ka best solution hai khate pite rahana chahiye esiliye esi liye maine aapse waha pr puchchha tha kuchh khane pine ko to fir mujhe suggestion aaya ki chocolate best h konsa ye nahi pata to usi liye to main aapko vo pura chocolate dediya jo bhi mere alternetive budget tha sab mila ke lekin mujhe ye samajh me nahi aa raha hai ki aap ye sb kaise leke jao gi waha tak load bade ga main socha main pahuchaduna pr aapne mana kr diya kyo ki aapko bhi ladkiyo vali problem ho syd to aapko bahut pain hota hoga to fir esase aapko bhi kuchh na kuchh dard kam hoga to usi liye aapko dediya aapka jab man kareg aaap kha lena pr jyada mat khana warna dat kharab ho jayenge` },
-  { sender: 'she', text: 'ðŸ˜‘ sut up' },
+  { sender: 'he', text: `hmm to matalb mere ko ese pahale lagta tha ki aap aap ese hamesa mere pr gussa karati hi rahti ho kabhi smajahti hi nahi ho baat ko pr i know aap sabse jyada mere ko samajhati ho esa mujhe lagta h whatever to fir dhire dhire mujhe lagne laga main hi ajib hu jo ki main hu i accept , to fir kuchh time pahale main ese hi soch raha tha ki aapko konsi chocolate du jo aapho achchha lagega cuz idk so maine GPT ki to bahut der tak meri aur uski baat hua then mujhe pata chala ladkiya ko hamesa gussa kro aata h and unke dimag achchanak se chance kyo ho jata hai , to fir usane mujhe bataya ki esa esa hota hai unhe es es problem ki vajah se dard hote h vo sab irritet hote h and pain bhi hota hai surten time duration pr to fir main socha "to eska solution bhi hoga pr esa nahi h" but kuchh chije relex kar deti h kuch time ke liye ese pain ko thoda kam kar skte hai so main khane pine ki itme khojane laga kyo ki kahane pine har chij ka best solution hai khate pite rahana chahiye esiliye  "esi liye maine aapse waha pr puchchha tha kuchh khane pine ko kahunga to chup chap muh band kar ke ha bol dena and kha lena" to fir mujhe suggestion aaya ki chocolate best h konsa ye nahi pata to usi liye to main aapko vo pura chocolate dediya jo bhi mere alternetive budget tha sab mila ke lekin mujhe ye samajh me nahi aa raha hai ki aap ye sb kaise leke jao gi waha tak load bade ga main socha main pahuchaduna pr aapne mana kr diya kyo ki aapko bhi ladkiyo vali problem ho syd to aapko bahut pain hota hoga to fir esase aapko bhi kuchh na kuchh dard kam hoga to usi liye aapko dediya aapka jab man kareg aaap kha lena pr jyada mat khana warna dat kharab ho jayenge` },
+  { sender: 'she', text: '😑 sut up' },
   { sender: 'he', text: 'sorry' },
   { sender: 'she', text: 'ho gaya' },
   { sender: 'he', text: 'sorry....!' },
@@ -1073,45 +1278,36 @@ screen.animate(
   { sender: 'he', text: 'okey sorry gussa mat kariye aap ...' },
   { sender: 'she', text: '....' },
   { sender: 'he', text: 'suniye' },
-  { sender: 'she', text: 'kya hai ?' },
+  { sender: 'she', text: '?' },
+  { sender: 'he', text: 'aap na thoda tredition getup me raha karo bahut sunder lagogi' },
+  { sender: 'she', text: 'sut up' },
   { sender: 'he', text: `sorry pr suniye dekho i know main aapko irriteting lagta hua thoda sa ajib lagata hu aur aap mere ko pasand bhi nahi ho mere ajib beheviour ki wajah se pr kya main bhi aapka dost ban skta hu i know me ladki nahi hua aur na hi aapke un ladke dosto jitana inteligent , smart , and good beheviour vala aur .........` },
-  { sender: 'she', text: 'sut up...' },
+  { sender: 'she', text: 'kya? kya hai ? kya bolte rahte ho dimag hai aapke paas?' },
   { sender: 'he', text: 'ok sorry' },
   { sender: 'she', text: 'ab jao' },
   { sender: 'he', text: 'suniye' },
-  { sender: 'she', text: '?' },
-  { sender: 'he', text: 'main jab bhi aapko madam ji kahata hua to aapko achchha nahi lagta hai h na kyo ki logicly to madam ji lo unhe kahate h jinhe ek dusare se problem nahi hoti h pr main to aapke liye problem hi hu' },
+  { sender: 'she', text: 'ab kya hai?' },
+  { sender: 'he', text: 'main jab bhi aapko madam ji kahata hua to aapko achchha nahi lagta hai h na , kyo ki logicly to madam ji lo unhe kahate h jinhe ek dusare se problem nahi hoti h pr main to aapke liye problem hi hu' },
   { sender: 'she', text: 'correct' },
   { sender: 'he', text: 'to main aab se aapko kabhi bhi madam ji nahi bulaunga aur agar kabhi aapko bulana bi raha to fir main aapko sirf siya bula skta hu' },
   { sender: 'she', text: 'siya ? ye kya hai ?' },
   { sender: 'he', text: 'name hai eske bahut sare meaning hote hai positive me hi h sab jitane main dekha' },
   { sender: 'she', text: 'aur ye name ka idea kha se aaya ?' },
   { sender: 'he', text: 'ese hi ek din baith ke soch raha tha ki agara aapko ko thed {hinglish + bhojpuri} me pulaunga to priyanshiya ese bulayega to ye achchha nahi lag raha tha to maine priyan + shiya me se priyan remove kr diya and shiya ko modified kr ke siya bana diya ho gaya na ek number ka name and ye cool bhi lagata hai' },
-  { sender: 'she', text: 'sut up ðŸ˜¡ na to ye naam achcha h na hi es name se bulane ki jarurat h infact bulana hi kyo h ...? bahut jyada ho raha h....' },
+  { sender: 'she', text: 'sut up 😡 na to ye naam achcha h na hi es name se bulane ki jarurat h infact bulana hi kyo h ...? bahut jyada ho raha h....' },
   { sender: 'he', text: 'okey okey sorry' },
   { sender: 'she', text: 'ab jao nahi to' },
   { sender: 'he', text: 'okey jaa raha hu pr ek kaam karogi aap' },
   { sender: 'she', text: 'ab kya h ?' },
   { sender: 'he', text: 'kuchh nahi pr kya ye sab es ladke ki madam ji ko bhi bata dogi aur ye bhi ab se nahi bole ga madam ji' },
   { sender: 'she', text: 'vo bhi dekh rahi h' },
-  { sender: 'he', text: `okey, Pr ek last chij aap bahut sunder munder lagti ho bahut jyada cute si mere ko aapke accent , aapke baat karane  tarika and aap jab one side smile karti ho bahut mast lagte h aur ussase bhi jyada aap achchi lagti ho bas problem ye h ki aap gusse me aur achchi lagti ho to mere samajh me nahi aata h ki aapko manau ya fir man bhar jane tak dekhata jau dekhat jau i know aapki tarif karane wale bahut h pr aapka etajar karane vale ki snkhya kya h . Sorry , mere ko ab sayari aane lagi h samajh me and ek bahut mast sayari lagi jo ki aapke pr hi lagata hai bani h syd poet ne pahale se hi janta hoga ki aap kabhi na kabhi aaogi hi es jaha me es liye usane aapke liye sayd ye pahale se bana ke rakh diya tha poet ka name to nahi pata pr aapke liye ek dam perfect hai disclaimer sayari ka matalb ye nahi hota ki vo rhyme kare word ko feel karana padta hai us charector me jake` },
-  { sender: 'he', text: `à¤¤à¥‹ à¤¯à¥‡ à¤•à¥à¤› à¤‡à¤¸ à¤¤à¤°à¤¹ à¤¹à¥ˆ , à¤•à¥€
-
-" à¤®à¤¹à¤à¤—à¥€ à¤¹à¥‹ à¤¤à¥à¤® à¤•à¥‹à¤¹à¤¿à¤¨à¥‚à¤° à¤¸à¥‡ à¤­à¥€,
-à¤–à¥‚à¤¬à¤¸à¥‚à¤°à¤¤ à¤¹à¥‹ à¤¤à¥à¤® à¤¹à¥‚à¤° à¤¸à¥‡ à¤­à¥€ à¥¤
-
-
-à¤¦à¥‚à¤° à¤¸à¥‡ à¤¦à¤¿à¤–à¤¤à¥‡ à¤¹à¥ˆà¤‚ à¤šà¤¾à¤à¤¦ à¤®à¥‡à¤‚ à¤­à¥€ à¤¦à¤¾à¤—,
-à¤®à¤—à¤° à¤¬à¥‡à¤¦à¤¾à¤— à¤¹à¥‹ à¤¤à¥à¤® à¤¦à¥‚à¤° à¤¸à¥‡ à¤­à¥€ à¥¤
-
-{à¤¨à¤¾ à¤œà¤¾à¤¨à¥‡ à¤¤à¥à¤®à¥à¤¹à¥‡à¤‚ à¤¹à¤¿à¤šà¥à¤šà¤•à¥à¤•à¥€ à¤•à¥à¤¯à¥‹à¤‚ à¤¨à¤¹à¥€à¤‚ à¤†à¤¤à¥€ à¤ªà¤°}
-
-à¤¹à¤° à¤¬à¤¾à¤° à¤¬à¤¹à¤¾à¤¨à¥‡ à¤¸à¥‡ à¤¹à¤® à¤†à¤ªà¤•à¥€ à¤¬à¤¾à¤¤ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚ ,
-à¤¹à¤° à¤ªà¤² à¤–à¥à¤¯à¤¾à¤²à¥‹ à¤®à¥‡à¤‚ à¤†à¤ª à¤¸à¥‡ à¤®à¥à¤²à¤¾à¤•à¤¾à¤¤ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤
-
-à¤‡à¤¤à¤¨à¥€ à¤¬à¤¾à¤° à¤¤à¥‹ à¤†à¤ª à¤¸à¤¾à¤‚à¤¸ à¤­à¥€ à¤¨à¤¹à¥€à¤‚ à¤²à¥‡à¤¤à¥‡,
-à¤œà¤¿à¤¤à¤¨à¥‡ à¤¹à¤® à¤†à¤ªà¤•à¥‹ à¤à¤• à¤¬à¤¾à¤° à¤®à¥‡ à¤¯à¤¾à¤¦ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚ à¥¤à¥¤"
+  { sender: 'he', text: `okey, Pr ek last chij aap bahut sunder munder lagti ho bahut jyada cute si mere ko aapke accent , aapke baat karane  tarika and aap jab one side smile karti ho bahut mast lagte h aur ussase bhi jyada aap achchi lagti ho bas problem ye h ki aap gusse me aur achchi lagti ho to mere samajh me nahi aata h ki aapko manau ya fir man bhar jane tak dekhata jau dekhat jau i know aapki tarif karane wale bahut h pr aapka etajar karane vale ki snkhya kya h . Sorry , mere ko ab sayari aane lagi h samajh me and ek bahut mast sayari lagi jo ki aapke pr hi lagata hai bani h syd poet ne pahale se hi janta hoga ki aap kabhi na kabhi aaogi hi es jaha me es liye usane aapke liye sayd ye pahale se bana ke rakh diya tha poet ka name to nahi pata pr aapke liye ek dam perfect hai , kabhi ejajat dogi to sunauga aapko [i know mujhe permission nahi milega kabhi bhi]` },
+  { sender: 'he', text: `
+[DUWLSEOMBIFLSEBNOCLYSMTICILYSMBIDKWICEYT]
+[YDKHPIIWYAKTYLCNLYB]
 ` },
+  { sender: 'she', text: 'ye kya hai ab ?' },
+  { sender: 'he', text: 'kuch nahi' },
   { sender: 'she', text: 'jao ab' },
   { sender: 'he', text: 'okey BYE BYE..................................' }
 ];
@@ -1268,5 +1464,3 @@ screen.animate(
   }, 420);
 }
  });
-
-
