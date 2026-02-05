@@ -76,31 +76,35 @@ body{
 
 .intro-glow{
   position:absolute;
-  top:50%;
-  left:50%;
-  width:260px;
-  height:260px;
+  inset:0;
+  width:100%;
+  height:100%;
+
   background:radial-gradient(
-    circle,
-    rgba(160,210,255,0.95) 0%,
-    rgba(220,180,255,0.65) 35%,
-    rgba(255,245,230,0.15) 70%
+    circle at center,
+    rgba(170,210,255,0.95) 0%,
+    rgba(210,180,255,0.6) 20%,
+    rgba(255,240,230,0.18) 40%,
+    rgba(0,0,0,0) 70%
   );
-  transform:translate(-50%,-50%) scale(0.2);
-  animation: glowExpand 3s ease-out forwards;
+
+  transform:scale(0.2);
+  animation: glowExpand 3.5s cubic-bezier(.22,1,.36,1) forwards;
 }
 
 @keyframes glowExpand{
   0%{
-    transform:translate(-50%,-50%) scale(0.2);
+    transform:scale(0.2);
     opacity:0;
   }
-  30%{
+
+  20%{
     opacity:1;
   }
+
   100%{
-    transform:translate(-50%,-50%) scale(8);
-    opacity:1;   /* 🔴 important: fade nahi hoga */
+    transform:scale(2.4);
+    opacity:1;
   }
 }
 
@@ -271,9 +275,14 @@ body{
   padding:10px 14px;
   margin-bottom:10px;
   border-radius:18px;
+
+  display:block;        /* ✅ back to original */
+  width:fit-content;    /* ✅ space fix */
   max-width:78%;
+
   line-height:1.35;
   word-break:break-word;
+
   transform-origin:50% 50%;
   animation:msgIn .36s cubic-bezier(.2,.9,.2,1) both;
 }
@@ -1282,3 +1291,46 @@ width:380px
   flex-shrink:0 !important;
   flex-grow:0 !important;
 }
+@keyframes zoomCelebrate {
+  0% {
+    transform:translate(-50%,-50%) scale(0.6);
+    opacity:0;
+  }
+  40% {
+    transform:translate(-50%,-50%) scale(1.15);
+    opacity:1;
+  }
+  100% {
+    transform:translate(-50%,-50%) scale(1);
+  }
+}
+@keyframes boom {
+  from { transform:scale(0); opacity:1; }
+  to { transform:scale(2); opacity:0; }
+}
+.option-modal::-webkit-scrollbar,
+.mini-chat::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.option-modal,
+.mini-chat {
+  scrollbar-width: none;
+}
+@keyframes sparkBoom {
+  0% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform:
+      translate(
+        calc((random() - 0.5) * 200px),
+        calc((random() - 0.5) * 200px)
+      )
+      scale(0.2);
+    opacity: 0;
+  }
+}
+
