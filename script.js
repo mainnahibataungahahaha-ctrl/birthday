@@ -1180,7 +1180,7 @@ agar maan ho to ek voice message me es page ka feed back de skti ho
 kya hua aapko roj dekh nahi skta to main aapko roj sun to paunga n
 
 dekho main ab thoda thoda pagala raha ho
-ab main chala sapano me aapse bade karane
+ab main chala sapano me aapse bate karane
 
 BYE BYE AND APANA DHYAN RAKHIYEGA YADAV JI 💗
 `;
@@ -1464,3 +1464,4 @@ jao ab
   }, 420);
 }
  });
+
