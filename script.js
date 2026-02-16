@@ -408,12 +408,25 @@ const buttons = [
   { label: "🎁 Gift", color: "btn-gradient-2" },
   { label: "🥰 About Madam Ji", color: "btn-cream" },
   { label: "🌟 Special", color: "btn-pink" },
+  { label: "📹 Watch Video", color: "btn-blue" },
   { label: "🔚 End", color: "btn-purple" }
 ];
 
     // Create buttons container
     const buttonsContainer = document.createElement("div");
     buttonsContainer.className = "buttons-grid";
+// 🔥 NOTE ABOVE BUTTONS
+const note = document.createElement("div");
+note.textContent = "👇 Neeche diye 8 options ko ek ek karke explore karein aur kisi aur ko na dikhaye";
+note.style.cssText = `
+  text-align:center;
+  font-size:14px;
+  margin-bottom:12px;
+  color:#555;
+  font-weight:600;
+`;
+
+buttonsContainer.appendChild(note);
 
    buttons.forEach((btn, index) => {
   const button = document.createElement("button");
@@ -1103,6 +1116,80 @@ boom 0.6s ease-out;
           miniChat.appendChild(morseBubble);
         }
       }
+      // ===== QR VIDEO BUTTON =====
+if (label.includes('Watch Video')) {
+  const miniChat = modal.querySelector('.mini-chat');
+
+  miniChat.innerHTML = `
+    <div style="text-align:center;padding:10px;">
+      <h3 style="margin-bottom:12px;">🎥 play this when you are free and alone also use earphone or headphone</h3>
+
+      <div id="qrOptions" style="
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:14px;
+        margin:20px auto;
+        max-width:320px;
+      ">
+        <button class="qr-btn" data-qr="1">✨ 1st this</button>
+        <button class="qr-btn" data-qr="2">💫 then this</button>
+        <button class="qr-btn" data-qr="3">🌙 2nd last</button>
+        <button class="qr-btn" data-qr="4">⭐ last one</button>
+      </div>
+
+      <div id="qrDisplay"></div>
+    </div>
+  `;
+
+  const style = document.createElement("style");
+  style.textContent = `
+    .qr-btn{
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.25);
+      background:linear-gradient(135deg,
+        rgba(255,255,255,0.18),
+        rgba(255,255,255,0.05));
+      backdrop-filter:blur(8px);
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition:.3s;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .qr-btn:hover{
+      transform:translateY(-4px) scale(1.03);
+      box-shadow:0 0 18px rgba(255,105,180,.6);
+    }
+
+    .qr-btn:active{
+      transform:scale(.96);
+    }
+  `;
+  document.head.appendChild(style);
+
+  const buttons = miniChat.querySelectorAll('.qr-btn');
+  const display = miniChat.querySelector('#qrDisplay');
+
+  buttons.forEach(btn => {
+    btn.onclick = () => {
+      const num = btn.dataset.qr;
+
+      display.innerHTML = `
+        <div style="margin-top:12px;">
+          <img src="assets/qr${num}.png"
+               style="width:240px;border-radius:14px;
+               box-shadow:0 10px 25px rgba(0,0,0,.35);">
+
+          <p style="margin-top:10px;color:#666;">
+            Scan with your phoneto watch 
+          </p>
+        </div>
+      `;
+    };
+  });
+}
 
       // ===== END BUTTON HANDLER =====
       if (label.includes('End')) {
@@ -1180,7 +1267,7 @@ agar maan ho to ek voice message me es page ka feed back de skti ho
 kya hua aapko roj dekh nahi skta to main aapko roj sun to paunga n
 
 dekho main ab thoda thoda pagala raha ho
-ab main chala sapano me aapse bate karane
+ab main chala sapano me aapse bade karane
 
 BYE BYE AND APANA DHYAN RAKHIYEGA YADAV JI 💗
 `;
@@ -1464,4 +1551,3 @@ jao ab
   }, 420);
 }
  });
-
